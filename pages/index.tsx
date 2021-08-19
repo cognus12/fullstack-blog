@@ -1,5 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 50px;
+`;
 
 const Home: NextPage = () => {
   return (
@@ -10,6 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Title>My page</Title>
       </main>
     </div>
   );
