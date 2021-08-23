@@ -1,5 +1,8 @@
 export const theme = {
   colors: {
-    primary: '#0070f3',
+    mainBg: '#18191a',
+    headerBg: '#242526',
+    textPrimary: '#f0f4f9',
+    logo: '#09d3ac',
   },
 };
