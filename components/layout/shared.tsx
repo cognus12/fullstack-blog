@@ -6,13 +6,16 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export type FlexProps = Pick<CSSObject, 'justifyContent' | 'alignContent' | 'alignItems' | 'flexWrap' | 'flexDirection' | 'flexFlow'>
+export type FlexProps = Pick<
+  CSSObject,
+  'justifyContent' | 'alignContent' | 'alignItems' | 'flexWrap' | 'flexDirection' | 'flexFlow'
+>;
 
 export interface FlexContainerProps {
-  flexProps?: FlexProps
+  flexProps?: FlexProps;
 }
 
 export const FlexContainer = styled.div<FlexContainerProps>(({ flexProps = {} }) => ({
   display: 'flex',
-  ...flexProps
+  ...flexProps,
 }));
