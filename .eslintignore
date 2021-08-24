@@ -1,1 +1,15 @@
 jest.config.json
+coverage/*
+
+static/*
+
+build/*
+dist/*
+.next/*
+bundles/*
+
+.idea/*
+.vscode/*
+.documentation/*
+
+node_modules/*

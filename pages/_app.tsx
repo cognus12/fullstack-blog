@@ -1,9 +1,8 @@
-import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { MainLayout } from '../components/layout/MainLayout';
-
+import { AppProps } from 'next/app';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
