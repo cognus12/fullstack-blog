@@ -5,14 +5,12 @@ import { Header } from './Header';
 
 export interface MainLayoutProps {}
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ children}) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <PageWrapper>
       <Header />
       <Container>
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </Container>
     </PageWrapper>
   );
