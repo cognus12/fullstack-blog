@@ -5,7 +5,7 @@ import { Logo } from './Logo';
 
 export interface HeaderProps {}
 
-export const Header: React.FC<HeaderProps> = () => {
+const HeaderView: React.FC<HeaderProps> = () => {
   return (
     <HeaderWrapper>
       <Container>
@@ -16,3 +16,5 @@ export const Header: React.FC<HeaderProps> = () => {
     </HeaderWrapper>
   );
 };
+
+export const Header = React.memo(HeaderView);

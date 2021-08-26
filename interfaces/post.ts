@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-export interface Post {
+export interface PostDTO {
   id: string;
   title: string;
   annotation: string;
@@ -9,16 +9,22 @@ export interface Post {
   tags?: string[];
 }
 
-export type PostsList = Post[];
+export type PostsList = PostDTO[];
 
-export interface PostContent extends Pick<Post, 'title' | 'tags'> {
+export interface PostContentDTO extends Pick<PostDTO, 'title' | 'tags'> {
   content: string;
 }
 
 export interface PostParams extends ParsedUrlQuery {
-  id: Post['id'];
+  id: PostDTO['id'];
 }
 
 export interface PostCtx extends GetServerSideProps<ParsedUrlQuery> {
   params: PostParams;
+}
+
+export interface PostRepoStruct {
+  connect: () => Promise<void>;
+  getAll: () => Promise<PostsList>;
+  getOne: (id: PostDTO['id']) => Promise<PostContentDTO | undefined>;
 }

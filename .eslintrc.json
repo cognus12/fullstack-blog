@@ -5,6 +5,7 @@
     "eslint:recommended",
     "prettier",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "env": {
@@ -54,7 +55,7 @@
     "lines-between-class-members": "warn",
     "prefer-destructuring": "warn",
     "no-redeclare": "warn",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
     "no-extra-boolean-cast": "warn",
     "prefer-const": "error",
     "prettier/prettier": "error",
@@ -80,12 +81,7 @@
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/no-empty-interface": 0,
-    "@typescript-eslint/no-unused-vars": [
-      2,
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
+    "@typescript-eslint/no-unused-vars": ["error"],
     "no-console": [
       2,
       {
