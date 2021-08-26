@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { PostDTO } from '../interfaces/post';
 import { postsRepo } from '../core/PostRepo';
+import { PostCard } from '../components/index/PostCard';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   await postsRepo.connect();
@@ -31,6 +32,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           </Link>
         </li>
       ))}
+      <PostCard />
     </>
   );
 };

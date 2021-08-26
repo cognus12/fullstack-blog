@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export type FlexProps = Pick<
   CSSObject,
-  'justifyContent' | 'alignContent' | 'alignItems' | 'flexWrap' | 'flexDirection' | 'flexFlow'
+  'justifyContent' | 'alignContent' | 'alignItems' | 'flexWrap' | 'flexDirection' | 'flexFlow' | 'columnGap'
 >;
 
 export interface FlexContainerProps {

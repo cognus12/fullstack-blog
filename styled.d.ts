@@ -7,6 +7,8 @@ declare module 'styled-components' {
       headerBg: string;
       textPrimary: string;
       logo: string;
+      secondaryBg: string;
+      imageBg: string;
     };
   }
 }
