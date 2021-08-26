@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexContainer } from '../../layout/shared';
+import { HashTags } from '../../shared/HashTags';
 
 export const PostRoot = styled.article`
   width: 365px;
@@ -39,13 +39,6 @@ export const PostCardTitle = styled.h2`
   margin-top: 0;
 `;
 
-export const Tags = styled(FlexContainer)`
+export const PostHashTags = styled(HashTags)`
   margin: 10px 0;
-`;
-
-export const Tag = styled.a`
-  padding: 5px;
-  background: slategrey;
-  flex-shrink: 0;
-  border-radius: 5px;
 `;

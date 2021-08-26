@@ -9,6 +9,7 @@ declare module 'styled-components' {
       logo: string;
       secondaryBg: string;
       imageBg: string;
+      tagBg: string;
     };
   }
 }

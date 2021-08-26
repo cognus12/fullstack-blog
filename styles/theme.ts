@@ -6,5 +6,6 @@ export const theme = {
     logo: '#09d3ac',
     secondaryBg: '#303846',
     imageBg: '#33363b',
+    tagBg: '#708090',
   },
 };

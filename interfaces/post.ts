@@ -1,12 +1,17 @@
 import { GetServerSideProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
+export interface HashTagDTO {
+  title: string;
+  href: string;
+}
+
 export interface PostDTO {
   id: string;
   title: string;
   annotation: string;
   cover?: string;
-  tags?: string[];
+  tags?: HashTagDTO[];
 }
 
 export type PostsList = PostDTO[];

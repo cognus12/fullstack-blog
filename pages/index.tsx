@@ -32,7 +32,12 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           </Link>
         </li>
       ))}
-      <PostCard />
+      <PostCard
+        id="123"
+        title="Post title"
+        annotation="Post annotation: some not very large text of few sentences"
+        cover="post-cover-ex.jpg"
+      />
     </>
   );
 };
