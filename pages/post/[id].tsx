@@ -1,16 +1,18 @@
 import { GetServerSidePropsResult, NextPage } from 'next';
 import Head from 'next/head';
-import { stubGetPost } from '../../stub/stubs';
-import { PostContent, PostCtx } from '../../interfaces/post';
+import { PostContentDTO, PostCtx } from '../../interfaces/post';
+import { postsRepo } from '../../core/PostRepo';
 
 export interface PostPageProps {
-  post: PostContent;
+  post: PostContentDTO;
 }
 
 export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServerSidePropsResult<PostPageProps>> => {
   const { id } = params;
 
-  const post = await stubGetPost(id);
+  await postsRepo.connect();
+
+  const post = await postsRepo.getOne(id);
 
   if (!post) {
     return {
@@ -35,6 +37,7 @@ const Post: NextPage<PostPageProps> = ({ post }) => {
       </Head>
       <article>
         <h1>{post.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
     </>
   );

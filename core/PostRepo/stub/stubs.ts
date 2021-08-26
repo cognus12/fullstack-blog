@@ -1,4 +1,4 @@
-import { Post, PostContent, PostsList } from '../interfaces/post';
+import { PostDTO, PostsList, PostContentDTO } from '../../../interfaces/post';
 
 const fakePosts: PostsList = [
   {
@@ -23,7 +23,7 @@ const fakePosts: PostsList = [
   },
 ];
 
-const fakePostsContent: Map<string, PostContent> = new Map([
+const fakePostsContent: Map<string, PostContentDTO> = new Map([
   [
     '1',
     {
@@ -56,5 +56,5 @@ const fakePostsContent: Map<string, PostContent> = new Map([
 
 export const stubGetPostsList = (): Promise<PostsList> => Promise.resolve(fakePosts);
 
-export const stubGetPost = (id: Post['id']): Promise<PostContent | undefined> =>
+export const stubGetPost = (id: PostDTO['id']): Promise<PostContentDTO | undefined> =>
   Promise.resolve(fakePostsContent.get(id));
