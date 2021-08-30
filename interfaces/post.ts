@@ -18,6 +18,8 @@ export type PostsList = PostDTO[];
 
 export interface PostContentDTO extends Pick<PostDTO, 'title' | 'tags'> {
   content: string;
+  date: string;
+  views: number;
 }
 
 export interface PostParams extends ParsedUrlQuery {
