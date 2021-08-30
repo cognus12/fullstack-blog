@@ -4,22 +4,36 @@ const fakePosts: PostsList = [
   {
     id: '1',
     title: 'First post',
-    annotation: 'some long text',
+    annotation: 'Post annotation: some not very large text of few sentences',
+    cover: 'post-cover-ex.jpg',
+    tags: [
+      { title: '#example', href: '/' },
+      { title: '#js', href: '/' },
+      { title: '#golang', href: '/' },
+    ],
   },
   {
     id: '2',
     title: 'First post',
-    annotation: 'some long text',
+    annotation: 'Post annotation: some not very large text of few sentences',
+    cover: 'post-cover-ex.jpg',
   },
   {
     id: '3',
     title: 'First post',
-    annotation: 'some long text',
+    annotation: 'Post annotation: some not very large text of few sentences',
+    cover: 'post-cover-ex.jpg',
+    tags: [
+      { title: '#example', href: '/' },
+      { title: '#react', href: '/' },
+      { title: '#nest', href: '/' },
+    ],
   },
   {
     id: '4',
     title: 'First post',
-    annotation: 'some long text',
+    annotation: 'Post annotation: some not very large text of few sentences',
+    cover: 'post-cover-ex.jpg',
   },
 ];
 
