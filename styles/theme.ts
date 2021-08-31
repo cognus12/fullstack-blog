@@ -4,5 +4,8 @@ export const theme = {
     headerBg: '#242526',
     textPrimary: '#f0f4f9',
     logo: '#09d3ac',
+    secondaryBg: '#303846',
+    imageBg: '#33363b',
+    tagBg: '#708090',
   },
 };

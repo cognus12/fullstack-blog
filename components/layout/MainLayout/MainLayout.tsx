@@ -1,7 +1,9 @@
 import React from 'react';
-import { PageWrapper } from './styles';
+import { MainContent, PageInner, PageWrapper } from './styles';
 import { Container } from '../shared';
 import { Header } from './Header';
+import { Sidebar } from './Sidebar';
+import { Footer } from './Footer/Footer';
 
 export interface MainLayoutProps {}
 
@@ -10,8 +12,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <PageWrapper>
       <Header />
       <Container>
-        <main>{children}</main>
+        <PageInner>
+          <MainContent>{children}</MainContent>
+          <Sidebar />
+        </PageInner>
       </Container>
+      <Footer />
     </PageWrapper>
   );
 };
