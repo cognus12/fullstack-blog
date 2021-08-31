@@ -10,7 +10,7 @@ export interface HashTagsProps {
 
 export const HashTags: React.FC<HashTagsProps> = ({ tags, className }) => {
   return (
-    <FlexContainer flexProps={{ columnGap: '5px', flexWrap: 'wrap' }} className={className}>
+    <FlexContainer flexProps={{ columnGap: '5px', flexWrap: 'wrap', rowGap: '5px' }} className={className}>
       {tags.map((tag) => (
         <HashTag key={tag.title} title={tag.title} href={tag.href} />
       ))}
