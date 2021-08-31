@@ -1,7 +1,8 @@
 import React from 'react';
-import { PageWrapper } from './styles';
+import { PageInner, PageWrapper } from './styles';
 import { Container } from '../shared';
 import { Header } from './Header';
+import { Sidebar } from './Sidebar';
 
 export interface MainLayoutProps {}
 
@@ -10,7 +11,10 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <PageWrapper>
       <Header />
       <Container>
-        <main>{children}</main>
+        <PageInner>
+          <main>{children}</main>
+          <Sidebar />
+        </PageInner>
       </Container>
     </PageWrapper>
   );

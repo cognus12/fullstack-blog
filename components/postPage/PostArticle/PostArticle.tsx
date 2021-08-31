@@ -9,6 +9,7 @@ const Article = styled.article`
   background: ${({ theme }) => theme.colors.secondaryBg};
   padding: 20px;
   border-radius: 15px;
+  max-width: 1000px;
 `;
 
 const ArticleInfo = styled(FlexContainer)`
