@@ -10,3 +10,8 @@ export const PageInner = styled(FlexContainer)`
   column-gap: 20px;
   position: relative;
 `;
+
+export const MainContent = styled.main`
+  width: 100%;
+  max-width: 1000px;
+`;
