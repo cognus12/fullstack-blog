@@ -1,4 +1,5 @@
 jest.config.json
+next-env.d.ts
 coverage/*
 
 static/*
