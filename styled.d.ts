@@ -1,15 +1,15 @@
 import 'styled-components';
 
+type ColorGroup = 'font' | 'layout' | 'logo' | 'image' | 'tag' | 'link';
+
+type ColorScheme = {
+  [key in ColorGroup]: {
+    [key: string]: string;
+  };
+};
+
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: {
-      mainBg: string;
-      headerBg: string;
-      textPrimary: string;
-      logo: string;
-      secondaryBg: string;
-      imageBg: string;
-      tagBg: string;
-    };
+    colors: ColorScheme;
   }
 }

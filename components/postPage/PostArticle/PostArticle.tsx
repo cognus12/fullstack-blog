@@ -6,7 +6,7 @@ import { FlexContainer } from '../../layout/shared';
 export interface PostArticleProps extends PostContentDTO {}
 
 const Article = styled.article`
-  background: ${({ theme }) => theme.colors.secondaryBg};
+  background: ${({ theme }) => theme.colors.layout.content};
   padding: 20px;
   border-radius: 15px;
   max-width: 1000px;

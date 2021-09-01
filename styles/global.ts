@@ -9,8 +9,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    background: ${({ theme }) => theme.colors.mainBg};
-    color: ${({ theme }) => theme.colors.textPrimary};
+    background: ${({ theme }) => theme.colors.layout.primary};
+    color: ${({ theme }) => theme.colors.font.primary};
   }
 
   body::-webkit-scrollbar {
@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.colors.logo};
+    background-color: ${({ theme }) => theme.colors.logo.color};
     outline: 1px solid slategrey;
   }
   

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FlexContainer } from '../../shared';
 
 export const HeaderWrapper = styled.header`
-  background: ${({ theme }) => theme.colors.headerBg};
+  background: ${({ theme }) => theme.colors.layout.secondary};
 `;
 
 export const HeaderInner = styled(FlexContainer)`
