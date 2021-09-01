@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Aside = styled.aside`
   width: 300px;
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.secondaryBg};
+  background: ${({ theme }) => theme.colors.layout.content};
   height: 600px;
   position: sticky;
   margin-top: 40px;

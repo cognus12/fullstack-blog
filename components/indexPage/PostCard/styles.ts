@@ -4,13 +4,13 @@ import { HashTags } from '../../shared/HashTags';
 export const PostRoot = styled.article`
   width: 365px;
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.secondaryBg};
+  background: ${({ theme }) => theme.colors.layout.content};
 `;
 
 export const PostCoverWrapper = styled.div`
   width: 100%;
   height: 260px;
-  background: ${({ theme }) => theme.colors.imageBg};
+  background: ${({ theme }) => theme.colors.image.background};
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   overflow: hidden;
@@ -26,12 +26,12 @@ export const PostCardInfo = styled.div`
 `;
 
 export const ReadMoreLink = styled.a`
-  color: ${({ theme }) => theme.colors.textPrimary};
+  color: ${({ theme }) => theme.colors.font.primary};
   font-weight: bold;
   transition: color 0.3s;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.logo};
+    color: ${({ theme }) => theme.colors.link.hover};
   }
 `;
 
