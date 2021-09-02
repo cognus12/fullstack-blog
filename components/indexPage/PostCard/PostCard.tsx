@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import { PostCardInfo, PostCardTitle, PostCoverWrapper, PostRoot, PostHashTags, ReadMoreLink } from './styles';
-import { PostDTO } from '../../../interfaces/post';
+import { PostPreviewDTO } from '../../../core/db/interfaces/post';
 
-export interface PostCardProps extends PostDTO {}
+export interface PostCardProps extends PostPreviewDTO {}
 
-export const PostCard: React.FC<PostCardProps> = ({ id, title, annotation, cover, tags }) => {
+export const PostCard: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug }) => {
   return (
     <PostRoot>
       <PostCoverWrapper>
@@ -15,7 +15,7 @@ export const PostCard: React.FC<PostCardProps> = ({ id, title, annotation, cover
         {tags && <PostHashTags tags={tags} />}
         <PostCardTitle>{title}</PostCardTitle>
         <p>{annotation}</p>
-        <Link href={`/post/${id}`}>
+        <Link href={`/post/${slug}`} passHref>
           <ReadMoreLink>Read more</ReadMoreLink>
         </Link>
       </PostCardInfo>

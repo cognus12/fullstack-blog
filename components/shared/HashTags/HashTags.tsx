@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlexContainer } from '../../layout/shared';
-import { HashTagDTO } from '../../../interfaces/post';
+import { HashTagDTO } from '../../../core/db/interfaces/post';
 import { HashTag } from './HashTag';
+import { HashTagsWrapper } from './styles';
 
 export interface HashTagsProps {
   tags: HashTagDTO[];
@@ -10,10 +10,10 @@ export interface HashTagsProps {
 
 export const HashTags: React.FC<HashTagsProps> = ({ tags, className }) => {
   return (
-    <FlexContainer flexProps={{ columnGap: '5px', flexWrap: 'wrap', rowGap: '5px' }} className={className}>
+    <HashTagsWrapper className={className}>
       {tags.map((tag) => (
         <HashTag key={tag.title} title={tag.title} href={tag.href} />
       ))}
-    </FlexContainer>
+    </HashTagsWrapper>
   );
 };

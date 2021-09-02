@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Tag } from './style';
-import { HashTagDTO } from '../../../../interfaces/post';
+import { HashTagDTO } from '../../../../core/db/interfaces/post';
 
 export interface HashTagProps extends HashTagDTO {}
 

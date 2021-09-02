@@ -1,5 +1,5 @@
 import { stubGetPost, stubGetPostsList } from './stub/stubs';
-import { PostContentDTO, PostRepoStruct, PostsList } from '../../interfaces/post';
+import { FullPostDTO, PostRepoStruct, PostsList } from '../interfaces/post';
 
 export class PostsRepoStub implements PostRepoStruct {
   connect = async (): Promise<void> => {
@@ -10,7 +10,7 @@ export class PostsRepoStub implements PostRepoStruct {
     return await stubGetPostsList();
   };
 
-  getOne = async (id: string): Promise<PostContentDTO | undefined> => {
-    return await stubGetPost(id);
+  getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
+    return await stubGetPost(slug);
   };
 }
