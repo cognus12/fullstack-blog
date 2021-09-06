@@ -1,20 +1,18 @@
 import { GetServerSidePropsResult, NextPage } from 'next';
 import Head from 'next/head';
-import { PostContentDTO, PostCtx } from '../../interfaces/post';
-import { postsRepo } from '../../core/PostRepo';
+import { FullPostDTO, PostCtx } from '../../core/db/interfaces/post';
 import { PageSection } from '../../components/layout/shared';
 import { PostArticle } from '../../components/postPage/PostArticle';
+import { postsRepo } from '../../core/db';
 
 export interface PostPageProps {
-  post: PostContentDTO;
+  post: FullPostDTO;
 }
 
 export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServerSidePropsResult<PostPageProps>> => {
-  const { id } = params;
+  const { slug } = params;
 
-  await postsRepo.connect();
-
-  const post = await postsRepo.getOne(id);
+  const post = await postsRepo.getOne(slug as string);
 
   if (!post) {
     return {

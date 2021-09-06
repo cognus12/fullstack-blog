@@ -11,7 +11,7 @@ const tags = [
   { title: '#ts', href: '/' },
   { title: '#patterns', href: '/' },
   { title: '#motivation', href: '/' },
-  { title: '#mongodb', href: '/' },
+  { title: '#db', href: '/' },
   { title: '#sql', href: '/' },
   { title: '#python', href: '/' },
   { title: '#material', href: '/' },
@@ -32,8 +32,8 @@ const tags = [
   { title: '#laravel', href: '/' },
 ];
 
-export interface SideBarTags {}
+export interface SideBarTagsProps {}
 
-export const SideBarTags: React.FC<SideBarTags> = () => {
+export const SideBarTags: React.FC<SideBarTagsProps> = () => {
   return <HashTags tags={tags} />;
 };

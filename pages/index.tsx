@@ -1,12 +1,10 @@
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
-import { postsRepo } from '../core/PostRepo';
 import { PageSection } from '../components/layout/shared';
 import { PostsWrapper } from '../components/indexPage/PostsWrapper';
+import { postsRepo } from '../core/db';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  await postsRepo.connect();
-
   const posts = await postsRepo.getAll();
 
   return {

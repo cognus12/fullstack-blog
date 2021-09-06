@@ -7,7 +7,7 @@ export interface LogoProps {}
 export const Logo: React.FC<LogoProps> = () => (
   <div>
     <strong>
-      <Link href="/">
+      <Link href="/" passHref>
         <LogoText>fullstack Blog</LogoText>
       </Link>
     </strong>

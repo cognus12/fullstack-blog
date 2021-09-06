@@ -1,9 +1,9 @@
 import React from 'react';
-import { PostContentDTO } from '../../../interfaces/post';
+import { FullPostDTO } from '../../../core/db/interfaces/post';
 import styled from 'styled-components';
 import { FlexContainer } from '../../layout/shared';
 
-export interface PostArticleProps extends PostContentDTO {}
+export interface PostArticleProps extends FullPostDTO {}
 
 const Article = styled.article`
   background: ${({ theme }) => theme.colors.layout.content};
