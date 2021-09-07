@@ -37,7 +37,6 @@ export type DbInstance = {
 };
 
 export interface PostRepoStruct {
-  connect: () => Promise<void> | Promise<DbInstance>;
   getAll: () => Promise<PostsList>;
   getOne: (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
 }

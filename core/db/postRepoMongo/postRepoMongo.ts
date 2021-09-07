@@ -1,44 +1,30 @@
 import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsList } from '../interfaces/post';
 import { connectToDb } from './utils/connectToDb';
+import { omit } from '../../../utils';
 
 interface Document {
   [key: string]: any;
 }
 
-//TODO rework these functions
+const normalizePost = <T extends Partial<FullPostDTO>>(postDocument: Document, exclude: string[]): T => {
+  const post = omit(postDocument, exclude) as T;
+  post.id = postDocument._id.toHexString();
 
-const normalizeFullPost = (post: Document): FullPostDTO => {
-  const normalized = { ...post, id: post._id.toHexString() } as Document & FullPostDTO;
-
-  delete normalized._id;
-
-  return normalized;
-};
-
-const normalizePreviewPost = (post: Document): PostPreviewDTO => {
-  const normalized = {} as PostPreviewDTO;
-
-  normalized.id = post._id.toHexString();
-  normalized.title = post.title;
-  normalized.annotation = post.annotation;
-  normalized.cover = post.cover;
-  normalized.slug = post.slug;
-
-  return normalized;
+  return post;
 };
 
 export class PostRepoMongo implements PostRepoStruct {
-  connect = async (): Promise<DbInstance> => {
+  private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
   };
 
   getAll = async (): Promise<PostsList> => {
-    const { db } = await connectToDb();
+    const { db } = await this._connect();
 
     const cursor = await db
       .collection('posts')
       .find({}, { projection: { content: 0, views: 0 } })
-      .limit(20);
+      .limit(10);
 
     const count = await cursor.count();
 
@@ -52,11 +38,11 @@ export class PostRepoMongo implements PostRepoStruct {
 
     await cursor.close();
 
-    return rawPosts.map(normalizePreviewPost);
+    return rawPosts.map((post) => normalizePost<PostPreviewDTO>(post, ['_id']));
   };
 
   getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
-    const { db } = await connectToDb();
+    const { db } = await this._connect();
 
     const post = await db.collection('posts').findOne({ slug: slug });
 
@@ -64,6 +50,6 @@ export class PostRepoMongo implements PostRepoStruct {
       return undefined;
     }
 
-    return normalizeFullPost(post);
+    return normalizePost<FullPostDTO>(post, ['_id']);
   };
 }
