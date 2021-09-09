@@ -1,6 +1,6 @@
-import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsList } from '../interfaces/post';
+import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
 import { connectToDb } from './utils/connectToDb';
-import { omit } from '../../../utils';
+import { omit, takeLast } from '../../../utils';
 
 interface Document {
   [key: string]: any;
@@ -18,29 +18,6 @@ export class PostRepoMongo implements PostRepoStruct {
     return await connectToDb();
   };
 
-  getAll = async (): Promise<PostsList> => {
-    const { db } = await this._connect();
-
-    const cursor = await db
-      .collection('posts')
-      .find({}, { projection: { content: 0, views: 0 } })
-      .limit(10);
-
-    const count = await cursor.count();
-
-    if (count === 0) {
-      await cursor.close();
-
-      return [];
-    }
-
-    const rawPosts = await cursor.toArray();
-
-    await cursor.close();
-
-    return rawPosts.map((post) => normalizePost<PostPreviewDTO>(post, ['_id']));
-  };
-
   getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
     const { db } = await this._connect();
 
@@ -51,5 +28,45 @@ export class PostRepoMongo implements PostRepoStruct {
     }
 
     return normalizePost<FullPostDTO>(post, ['_id']);
+  };
+
+  getAll = async (pageSize = 10, lastId?: string): Promise<PostsDataDTO> => {
+    const { db } = await this._connect();
+
+    const filter = lastId ? { _id: { $gt: lastId } } : {};
+
+    const options = { projection: { content: 0, views: 0 } };
+
+    const cursor = await db.collection('posts').find(filter, options).limit(pageSize);
+
+    const count = await cursor.count();
+
+    if (count === 0) {
+      await cursor.close();
+
+      return {
+        posts: [],
+      };
+    }
+
+    const rawPosts = await cursor.toArray();
+
+    const lastPost = takeLast(rawPosts);
+
+    const newLastId = lastPost ? lastPost._id.toHexString() : undefined;
+
+    await cursor.close();
+
+    const posts = rawPosts.map((post) => normalizePost<PostPreviewDTO>(post, ['_id']));
+
+    const result: PostsDataDTO = {
+      posts,
+    };
+
+    if (newLastId) {
+      result.lastId = newLastId;
+    }
+
+    return result;
   };
 }

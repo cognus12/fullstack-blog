@@ -5,11 +5,12 @@ import { PostsWrapper } from '../components/indexPage/PostsWrapper';
 import { postsRepo } from '../core/db';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await postsRepo.getAll();
+  const { posts, lastId } = await postsRepo.getAll();
 
   return {
     props: {
       posts,
+      lastId,
     },
   };
 };
