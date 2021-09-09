@@ -1,7 +1,8 @@
 import React from 'react';
 import { PostPreviewDTO } from '../../../core/db/interfaces/post';
-import { PostsFeed } from './styles';
+import { LoadMoreWrapper, PostsFeed } from './styles';
 import { PostCard } from '../PostCard';
+import { LoadMore } from './LoadMore';
 
 export interface PostsWrapperProps {
   posts: PostPreviewDTO[];
@@ -9,10 +10,15 @@ export interface PostsWrapperProps {
 
 export const PostsWrapper: React.FC<PostsWrapperProps> = ({ posts }) => {
   return (
-    <PostsFeed flexProps={{ flexWrap: 'wrap', columnGap: '30px', rowGap: '30px' }}>
-      {posts.map((post: PostPreviewDTO) => (
-        <PostCard key={post.id} {...post} />
-      ))}
-    </PostsFeed>
+    <>
+      <PostsFeed flexProps={{ flexWrap: 'wrap', columnGap: '30px', rowGap: '30px' }}>
+        {posts.map((post: PostPreviewDTO) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </PostsFeed>
+      <LoadMoreWrapper>
+        <LoadMore />
+      </LoadMoreWrapper>
+    </>
   );
 };

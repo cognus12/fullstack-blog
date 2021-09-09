@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     outline: 1px solid slategrey;
   }
   
-  a {
+  a, button {
     cursor: pointer;
   }
 `;
