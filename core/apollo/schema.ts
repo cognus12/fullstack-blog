@@ -16,6 +16,6 @@ export const typeDefs = gql`
   }
 
   type Query {
-    getPosts: PostData!
+    getPosts(lastId: String): PostData!
   }
 `;
