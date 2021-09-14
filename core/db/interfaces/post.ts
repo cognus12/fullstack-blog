@@ -37,7 +37,7 @@ export type DbInstance = {
 };
 
 export interface PostRepoStruct {
-  getAll: (pageSize?: number, lastId?: string) => Promise<PostsDataDTO>;
+  getAll: (lastId?: string) => Promise<PostsDataDTO>;
   getOne: (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
 }
 

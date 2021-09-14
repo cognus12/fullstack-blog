@@ -1,6 +1,7 @@
 import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
+import { POSTS_PAGE_SIZE } from '../../config/constants';
 
 interface Document {
   [key: string]: any;
@@ -30,14 +31,14 @@ export class PostRepoMongo implements PostRepoStruct {
     return normalizePost<FullPostDTO>(post, ['_id']);
   };
 
-  getAll = async (pageSize = 10, lastId?: string): Promise<PostsDataDTO> => {
+  getAll = async (lastId?: string): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
     const filter = lastId ? { _id: { $gt: lastId } } : {};
 
     const options = { projection: { content: 0, views: 0 } };
 
-    const cursor = await db.collection('posts').find(filter, options).limit(pageSize);
+    const cursor = await db.collection('posts').find(filter, options).limit(POSTS_PAGE_SIZE);
 
     const count = await cursor.count();
 
