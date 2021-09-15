@@ -1,5 +1,5 @@
-import { FullPostDTO } from '../db/interfaces/post';
-import { postsRepo } from '../db';
+import { FullPostDTO } from '../../../db/interfaces/post';
+import { postsRepo } from '../../../db';
 
 export interface GetPostsArgs {
   lastId: FullPostDTO['id'];

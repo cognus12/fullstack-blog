@@ -1,15 +1,5 @@
-import { ApolloServer } from 'apollo-server-micro';
-import { resolvers } from '../../core/apollo/resolvers';
-import { typeDefs } from '../../core/apollo/schema';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-const createHandler = async () => {
-  const apolloServer = new ApolloServer({ typeDefs, resolvers });
-
-  await apolloServer.start();
-
-  return apolloServer.createHandler({ path: '/api/graphql' });
-};
+import { graphQLServer } from '../../core/apollo/server';
 
 export const config = {
   api: {
@@ -18,6 +8,6 @@ export const config = {
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const apolloServerHandler = await createHandler();
-  return apolloServerHandler(req, res);
+  const handler = await graphQLServer.createHandler();
+  return handler(req, res);
 };
