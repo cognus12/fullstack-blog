@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { graphQLServer } from '../../core/apollo/server';
+import { graphQLServer } from '../../core/apollo';
 
 export const config = {
   api: {
