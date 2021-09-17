@@ -9,9 +9,8 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: isServer(),
-    link: createIsomorphicLink,
+    link: createIsomorphicLink(),
     cache: cache,
-    // uri: GRAPHQL_PATH,
   });
 };
 
