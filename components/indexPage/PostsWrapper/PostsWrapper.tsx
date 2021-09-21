@@ -3,12 +3,16 @@ import { PostPreviewDTO } from '../../../core/db/interfaces/post';
 import { LoadMoreWrapper, PostsFeed } from './styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
+import { useQuery } from '@apollo/client';
+import { LOCAL__POSTS } from '../../../core/apollo/client';
 
-export interface PostsWrapperProps {
-  posts: PostPreviewDTO[];
-}
+export interface PostsWrapperProps {}
 
-export const PostsWrapper: React.FC<PostsWrapperProps> = ({ posts }) => {
+export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
+  const {
+    data: { posts },
+  } = useQuery(LOCAL__POSTS);
+
   return (
     <>
       <PostsFeed flexProps={{ flexWrap: 'wrap', columnGap: '30px', rowGap: '30px' }}>

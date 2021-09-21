@@ -21,14 +21,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      posts,
-      lastId,
       initialApolloState: apolloClient.cache.extract(),
     },
   };
 };
 
-const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ posts }) => {
+const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   return (
     <>
       <Head>
@@ -37,7 +35,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageSection>
-        <PostsWrapper posts={posts} />
+        <PostsWrapper />
       </PageSection>
     </>
   );
