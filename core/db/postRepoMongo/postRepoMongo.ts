@@ -2,6 +2,7 @@ import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO }
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../config/constants';
+import { ObjectId } from 'mongodb';
 
 interface Document {
   [key: string]: any;
@@ -34,7 +35,9 @@ export class PostRepoMongo implements PostRepoStruct {
   getAll = async (lastId?: string): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
-    const filter = lastId ? { _id: { $gt: lastId } } : {};
+    const objectId = new ObjectId(lastId);
+
+    const filter = lastId ? { _id: { $gt: objectId } } : {};
 
     const options = { projection: { content: 0, views: 0 } };
 
