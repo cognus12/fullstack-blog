@@ -8,14 +8,15 @@ export const typeDefs = gql`
     date: String!
     slug: String!
     views: Int
+    cover: String
   }
 
-  type PostData {
+  type PostsData {
     posts: [Post]!
     lastId: String
   }
 
   type Query {
-    getPosts(lastId: String): PostData!
+    getPosts(lastId: String): PostsData!
   }
 `;

@@ -1,2 +1,2 @@
 export * from './hooks';
-export * from './queries/local';
+export * from './queries/queries';

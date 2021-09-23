@@ -11,6 +11,7 @@ const createApolloClient = () => {
     ssrMode: isServer(),
     link: createIsomorphicLink(),
     cache: cache,
+    connectToDevTools: true,
   });
 };
 

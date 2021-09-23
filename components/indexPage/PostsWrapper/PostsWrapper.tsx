@@ -1,17 +1,20 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import { PostPreviewDTO } from '../../../core/db/interfaces/post';
 import { LoadMoreWrapper, PostsFeed } from './styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { useQuery } from '@apollo/client';
-import { LOCAL__POSTS } from '../../../core/apollo/client';
+import { GET_ALL_POSTS } from '../../../core/apollo/client/queries/queries';
 
 export interface PostsWrapperProps {}
 
 export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
   const {
-    data: { posts },
-  } = useQuery(LOCAL__POSTS);
+    data: {
+      getPosts: { posts, lastId },
+    },
+    fetchMore,
+  } = useQuery(GET_ALL_POSTS);
 
   return (
     <>
@@ -21,7 +24,7 @@ export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
         ))}
       </PostsFeed>
       <LoadMoreWrapper>
-        <LoadMore />
+        <LoadMore fetcher={() => fetchMore({ variables: { lastId } })} />
       </LoadMoreWrapper>
     </>
   );

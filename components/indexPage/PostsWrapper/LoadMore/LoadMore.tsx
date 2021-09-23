@@ -1,12 +1,10 @@
-import { useQuery } from '@apollo/client';
 import React from 'react';
 import { LoadMoreButton } from './style';
-import { LOCAL_LAST_ID } from '../../../../core/apollo/client';
 
-export const LoadMore: React.FC = () => {
-  const {
-    data: { lastId },
-  } = useQuery(LOCAL_LAST_ID);
+export interface LoadMoreProps {
+  fetcher: () => void;
+}
 
-  return <LoadMoreButton onClick={() => console.log(lastId)}>Load more</LoadMoreButton>;
+export const LoadMore: React.FC<LoadMoreProps> = ({ fetcher }) => {
+  return <LoadMoreButton onClick={fetcher}>Load more</LoadMoreButton>;
 };
