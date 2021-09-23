@@ -2,21 +2,22 @@ import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO }
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../config/constants';
+import { ObjectId } from 'mongodb';
 
 interface Document {
   [key: string]: any;
 }
 
-const normalizePost = <T extends Partial<FullPostDTO>>(postDocument: Document, exclude: string[]): T => {
-  const post = omit(postDocument, exclude) as T;
-  post.id = postDocument._id.toHexString();
-
-  return post;
-};
-
 export class PostRepoMongo implements PostRepoStruct {
   private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
+  };
+
+  private _normalizePost = <T extends Partial<FullPostDTO>>(postDocument: Document, exclude: string[]): T => {
+    const post = omit(postDocument, exclude) as T;
+    post.id = postDocument._id.toHexString();
+
+    return post;
   };
 
   getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
@@ -28,13 +29,15 @@ export class PostRepoMongo implements PostRepoStruct {
       return undefined;
     }
 
-    return normalizePost<FullPostDTO>(post, ['_id']);
+    return this._normalizePost<FullPostDTO>(post, ['_id']);
   };
 
   getAll = async (lastId?: string): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
-    const filter = lastId ? { _id: { $gt: lastId } } : {};
+    const objectId = new ObjectId(lastId);
+
+    const filter = lastId ? { _id: { $gt: objectId } } : {};
 
     const options = { projection: { content: 0, views: 0 } };
 
@@ -58,7 +61,7 @@ export class PostRepoMongo implements PostRepoStruct {
 
     await cursor.close();
 
-    const posts = rawPosts.map((post) => normalizePost<PostPreviewDTO>(post, ['_id']));
+    const posts = rawPosts.map((post) => this._normalizePost<PostPreviewDTO>(post, ['_id']));
 
     const result: PostsDataDTO = {
       posts,
