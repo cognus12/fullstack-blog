@@ -8,16 +8,16 @@ interface Document {
   [key: string]: any;
 }
 
-const normalizePost = <T extends Partial<FullPostDTO>>(postDocument: Document, exclude: string[]): T => {
-  const post = omit(postDocument, exclude) as T;
-  post.id = postDocument._id.toHexString();
-
-  return post;
-};
-
 export class PostRepoMongo implements PostRepoStruct {
   private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
+  };
+
+  private _normalizePost = <T extends Partial<FullPostDTO>>(postDocument: Document, exclude: string[]): T => {
+    const post = omit(postDocument, exclude) as T;
+    post.id = postDocument._id.toHexString();
+
+    return post;
   };
 
   getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
@@ -29,7 +29,7 @@ export class PostRepoMongo implements PostRepoStruct {
       return undefined;
     }
 
-    return normalizePost<FullPostDTO>(post, ['_id']);
+    return this._normalizePost<FullPostDTO>(post, ['_id']);
   };
 
   getAll = async (lastId?: string): Promise<PostsDataDTO> => {
@@ -61,7 +61,7 @@ export class PostRepoMongo implements PostRepoStruct {
 
     await cursor.close();
 
-    const posts = rawPosts.map((post) => normalizePost<PostPreviewDTO>(post, ['_id']));
+    const posts = rawPosts.map((post) => this._normalizePost<PostPreviewDTO>(post, ['_id']));
 
     const result: PostsDataDTO = {
       posts,
