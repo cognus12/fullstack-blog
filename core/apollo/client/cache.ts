@@ -11,6 +11,7 @@ export const cache = new InMemoryCache({
           merge(existing = { posts: [], lastId: null }, incoming) {
             return {
               lastId: incoming.lastId,
+              hasMore: incoming.hasMore,
               posts: [...existing.posts, ...incoming.posts],
             };
           },

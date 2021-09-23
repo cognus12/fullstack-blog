@@ -14,6 +14,7 @@ export const typeDefs = gql`
   type PostsData {
     posts: [Post]!
     lastId: String
+    hasMore: Boolean
   }
 
   type Query {

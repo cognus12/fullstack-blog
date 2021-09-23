@@ -44,4 +44,5 @@ export interface PostRepoStruct {
 export interface PostsDataDTO {
   posts: PostsList;
   lastId?: string;
+  hasMore?: boolean;
 }

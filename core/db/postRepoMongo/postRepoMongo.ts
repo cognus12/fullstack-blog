@@ -2,7 +2,7 @@ import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO }
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../config/constants';
-import { ObjectId } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 
 interface Document {
   [key: string]: any;
@@ -18,6 +18,17 @@ export class PostRepoMongo implements PostRepoStruct {
     post.id = postDocument._id.toHexString();
 
     return post;
+  };
+
+  private _checkHasMore = async (lastId: string, db: Db): Promise<boolean> => {
+    const filter = { _id: { $gt: new ObjectId(lastId) } };
+    const cursor = await db.collection('posts').find(filter).limit(POSTS_PAGE_SIZE);
+
+    const count = await cursor.count();
+
+    await cursor.close();
+
+    return Boolean(count);
   };
 
   getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
@@ -69,6 +80,12 @@ export class PostRepoMongo implements PostRepoStruct {
 
     if (newLastId) {
       result.lastId = newLastId;
+    }
+
+    const hasMore = await this._checkHasMore(newLastId, db);
+
+    if (hasMore) {
+      result.hasMore = hasMore;
     }
 
     return result;

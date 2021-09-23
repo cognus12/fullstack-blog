@@ -8,7 +8,7 @@ import { initializeApollo } from '../core/apollo/client/client';
 import { GET_ALL_POSTS } from '../core/apollo/client';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { posts, lastId } = await postsRepo.getAll();
+  const { posts, lastId, hasMore } = await postsRepo.getAll();
 
   const apolloClient = initializeApollo();
 
@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       getPosts: {
         lastId,
         posts,
+        hasMore,
       },
     },
   });
