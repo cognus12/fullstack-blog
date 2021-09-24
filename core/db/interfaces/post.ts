@@ -37,12 +37,13 @@ export type DbInstance = {
 };
 
 export interface PostRepoStruct {
-  getAll: (lastId?: FullPostDTO['id']) => Promise<PostsDataDTO>;
+  getAll: (loadedCount: number, lastId?: FullPostDTO['id']) => Promise<PostsDataDTO>;
   getOne: (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
 }
 
 export interface PostsDataDTO {
   posts: PostsList;
+  loadedCount: number;
   lastId?: string;
   hasMore?: boolean;
 }

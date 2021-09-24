@@ -13,11 +13,12 @@ export const typeDefs = gql`
 
   type PostsData {
     posts: [Post]!
+    loadedCount: Int
     lastId: String
     hasMore: Boolean
   }
 
   type Query {
-    getPosts(lastId: String): PostsData!
+    getPosts(loadedCount: Int, lastId: String): PostsData!
   }
 `;

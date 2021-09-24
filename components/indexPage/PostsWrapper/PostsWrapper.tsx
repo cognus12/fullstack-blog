@@ -11,7 +11,7 @@ export interface PostsWrapperProps {}
 export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
   const {
     data: {
-      getPosts: { posts, lastId, hasMore },
+      getPosts: { posts, lastId, hasMore, loadedCount },
     },
     fetchMore,
   } = useQuery(GET_ALL_POSTS);
@@ -23,7 +23,9 @@ export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
           <PostCard key={post.id} {...post} />
         ))}
       </PostsFeed>
-      <LoadMoreWrapper>{hasMore && <LoadMore fetcher={() => fetchMore({ variables: { lastId } })} />}</LoadMoreWrapper>
+      <LoadMoreWrapper>
+        {hasMore && <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount } })} />}
+      </LoadMoreWrapper>
     </>
   );
 };
