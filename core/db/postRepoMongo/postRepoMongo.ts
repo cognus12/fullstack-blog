@@ -20,7 +20,17 @@ export class PostRepoMongo implements PostRepoStruct {
     return post;
   };
 
-  getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
+  private _checkHasMore = (count: number, loadedCount: number): boolean => {
+    return loadedCount !== count;
+  };
+
+  private _getLastId = (postDocuments: Document[]): string | undefined => {
+    const lastPost = takeLast(postDocuments);
+
+    return lastPost ? lastPost._id.toHexString() : undefined;
+  };
+
+  public getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
     const { db } = await this._connect();
 
     const post = await db.collection('posts').findOne({ slug: slug });
@@ -32,7 +42,7 @@ export class PostRepoMongo implements PostRepoStruct {
     return this._normalizePost<FullPostDTO>(post, ['_id']);
   };
 
-  getAll = async (lastId?: string): Promise<PostsDataDTO> => {
+  public getAll = async (loadedCount = 0, lastId?: string): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
     const objectId = new ObjectId(lastId);
@@ -43,21 +53,24 @@ export class PostRepoMongo implements PostRepoStruct {
 
     const cursor = await db.collection('posts').find(filter, options).limit(POSTS_PAGE_SIZE);
 
+    const total = await db.collection('posts').countDocuments();
+
     const count = await cursor.count();
+
+    const newLoadedCount = loadedCount + count;
 
     if (count === 0) {
       await cursor.close();
 
       return {
         posts: [],
+        loadedCount,
       };
     }
 
     const rawPosts = await cursor.toArray();
 
-    const lastPost = takeLast(rawPosts);
-
-    const newLastId = lastPost ? lastPost._id.toHexString() : undefined;
+    const newLastId = this._getLastId(rawPosts);
 
     await cursor.close();
 
@@ -65,6 +78,8 @@ export class PostRepoMongo implements PostRepoStruct {
 
     const result: PostsDataDTO = {
       posts,
+      loadedCount: newLoadedCount,
+      hasMore: this._checkHasMore(total, newLoadedCount),
     };
 
     if (newLastId) {

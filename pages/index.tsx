@@ -1,21 +1,37 @@
+import React from 'react';
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
 import { PageSection } from '../components/layout/shared';
 import { PostsWrapper } from '../components/indexPage/PostsWrapper';
 import { postsRepo } from '../core/db';
+import { initializeApollo } from '../core/apollo/client/client';
+import { GET_ALL_POSTS } from '../core/apollo/client';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { posts, lastId } = await postsRepo.getAll();
+  const { posts, lastId, hasMore, loadedCount } = await postsRepo.getAll(0);
+
+  const apolloClient = initializeApollo();
+
+  apolloClient.cache.writeQuery({
+    query: GET_ALL_POSTS,
+    data: {
+      getPosts: {
+        lastId,
+        posts,
+        hasMore,
+        loadedCount,
+      },
+    },
+  });
 
   return {
     props: {
-      posts,
-      lastId,
+      initialApolloState: apolloClient.cache.extract(),
     },
   };
 };
 
-const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ posts }) => {
+const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   return (
     <>
       <Head>
@@ -24,7 +40,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageSection>
-        <PostsWrapper posts={posts} />
+        <PostsWrapper />
       </PageSection>
     </>
   );

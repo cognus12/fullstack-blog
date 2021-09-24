@@ -5,7 +5,7 @@ import { PostPreviewDTO } from '../../../core/db/interfaces/post';
 
 export interface PostCardProps extends PostPreviewDTO {}
 
-export const PostCard: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug }) => {
+const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug }) => {
   return (
     <PostRoot>
       <PostCoverWrapper>
@@ -22,3 +22,5 @@ export const PostCard: React.FC<PostCardProps> = ({ title, annotation, cover, ta
     </PostRoot>
   );
 };
+
+export const PostCard = React.memo(PostCardInner);
