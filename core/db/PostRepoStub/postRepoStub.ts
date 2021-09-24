@@ -7,6 +7,9 @@ export class PostsRepoStub implements PostRepoStruct {
 
     return {
       posts,
+      hasMore: false,
+      loadedCount: 10,
+      lastId: '8',
     };
   };
 
