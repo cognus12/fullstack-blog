@@ -17,6 +17,10 @@ export class PostRepoMongo implements PostRepoStruct {
     const post = omit(postDocument, exclude) as T;
     post.id = postDocument._id.toHexString();
 
+    if (!post.tags) {
+      post.tags = [];
+    }
+
     return post;
   };
 
@@ -49,7 +53,7 @@ export class PostRepoMongo implements PostRepoStruct {
 
     const filter = lastId ? { _id: { $gt: objectId } } : {};
 
-    const options = { projection: { content: 0, views: 0 } };
+    const options = { projection: { content: 0 } };
 
     const cursor = await db.collection('posts').find(filter, options).limit(POSTS_PAGE_SIZE);
 

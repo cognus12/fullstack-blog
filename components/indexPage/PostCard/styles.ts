@@ -1,28 +1,39 @@
 import styled from 'styled-components';
 import { HashTags } from '../../shared/HashTags';
+import { FlexContainer } from '../../layout/shared';
+import { device } from '../../../styles/global';
 
-export const PostRoot = styled.article`
-  width: 365px;
+export const PostRoot = styled(FlexContainer)`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.layout.content};
+  flex-direction: column;
+
+  @media screen and ${device.laptop} {
+    flex-direction: row;
+  }
 `;
 
 export const PostCoverWrapper = styled.div`
-  width: 100%;
-  height: 260px;
+  min-width: 350px;
   background: ${({ theme }) => theme.colors.image.background};
   border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   overflow: hidden;
 
   img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }
 `;
 
-export const PostCardInfo = styled.div`
+export const PostCardContent = styled.div`
   padding: 20px;
+`;
+
+export const PostCardInfo = styled(FlexContainer)`
+  column-gap: 20px;
+  align-items: center;
 `;
 
 export const ReadMoreLink = styled.a`

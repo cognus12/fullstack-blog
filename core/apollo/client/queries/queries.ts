@@ -8,6 +8,13 @@ export const GET_ALL_POSTS = gql`
         title
         annotation
         cover
+        slug
+        tags {
+          title
+          href
+        }
+        date
+        views
       }
       lastId
       hasMore
