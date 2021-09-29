@@ -1,9 +1,17 @@
 import styled, { CSSObject } from 'styled-components';
+import { device } from '../../styles/global';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1170px;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @media screen and ${device.tablet} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export type FlexProps = Pick<

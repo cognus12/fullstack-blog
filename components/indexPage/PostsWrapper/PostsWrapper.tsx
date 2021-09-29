@@ -18,7 +18,7 @@ export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
 
   return (
     <>
-      <PostsFeed flexProps={{ flexWrap: 'wrap', columnGap: '30px', rowGap: '30px' }}>
+      <PostsFeed flexProps={{ flexWrap: 'wrap', flexDirection: 'column', rowGap: '30px' }}>
         {posts.map((post: PostPreviewDTO) => (
           <PostCard key={post.id} {...post} />
         ))}

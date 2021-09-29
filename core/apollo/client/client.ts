@@ -1,8 +1,7 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
-import { isServer } from '../../../utils';
 import { cache } from './cache';
-
 import { createIsomorphicLink } from './link';
+import { isServer } from '../../../helpers';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 

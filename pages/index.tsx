@@ -6,8 +6,16 @@ import { PostsWrapper } from '../components/indexPage/PostsWrapper';
 import { postsRepo } from '../core/db';
 import { initializeApollo } from '../core/apollo/client/client';
 import { GET_ALL_POSTS } from '../core/apollo/client';
+import { wrapWithSharedPageProps, SharedPageProps } from '../core/enhancers';
+import { NormalizedCacheObject } from '@apollo/client';
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export interface HomePageOwnProps {
+  initialApolloState: NormalizedCacheObject;
+}
+
+export interface HomePageProps extends SharedPageProps, HomePageOwnProps {}
+
+const getHomeServerSideProps: GetServerSideProps<HomePageOwnProps> = async () => {
   const { posts, lastId, hasMore, loadedCount } = await postsRepo.getAll(0);
 
   const apolloClient = initializeApollo();
@@ -30,6 +38,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   };
 };
+
+export const getServerSideProps = wrapWithSharedPageProps<HomePageProps>(getHomeServerSideProps);
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   return (

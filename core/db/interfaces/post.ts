@@ -14,12 +14,12 @@ export interface FullPostDTO {
   content: string;
   date: string;
   slug: string;
-  views?: number;
+  views: number;
   cover?: string;
   tags?: HashTagDTO[];
 }
 
-export interface PostPreviewDTO extends Omit<FullPostDTO, 'views' | 'content'> {}
+export interface PostPreviewDTO extends Omit<FullPostDTO, 'content'> {}
 
 export type PostsList = PostPreviewDTO[];
 

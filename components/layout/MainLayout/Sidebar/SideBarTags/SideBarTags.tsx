@@ -34,6 +34,8 @@ const tags = [
 
 export interface SideBarTagsProps {}
 
-export const SideBarTags: React.FC<SideBarTagsProps> = () => {
+const SideBarTagsView: React.FC<SideBarTagsProps> = () => {
   return <HashTags tags={tags} />;
 };
+
+export const SideBarTags = React.memo(SideBarTagsView);
