@@ -8,13 +8,13 @@ export const PostRoot = styled(FlexContainer)`
   background: ${({ theme }) => theme.colors.postCard.background};
   flex-direction: column;
 
-  @media screen and ${device.laptop} {
+  @media screen and ${device.tablet} {
     flex-direction: row;
   }
 `;
 
 export const PostCoverWrapper = styled.div`
-  min-width: 350px;
+  width: 100%;
   background: ${({ theme }) => theme.colors.image.background};
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -24,6 +24,10 @@ export const PostCoverWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media screen and ${device.tablet} {
+    width: 350px;
   }
 `;
 

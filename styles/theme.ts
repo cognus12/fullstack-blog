@@ -41,5 +41,8 @@ export const theme = {
     postCard: {
       background: baseColors.black200,
     },
+    fullPost: {
+      background: baseColors.black200,
+    },
   },
 };
