@@ -21,6 +21,7 @@ export const PostCoverWrapper = styled.div`
   overflow: hidden;
 
   img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
