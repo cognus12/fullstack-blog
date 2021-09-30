@@ -11,7 +11,8 @@ type ColorGroup =
   | 'sidebar'
   | 'footer'
   | 'postCard'
-  | 'body';
+  | 'body'
+  | 'fullPost';
 
 type ColorScheme = {
   [key in ColorGroup]: {

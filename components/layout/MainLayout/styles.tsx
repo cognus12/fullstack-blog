@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FlexContainer } from '../shared';
+import { device } from '../../../styles/global';
 
 export const PageWrapper = styled.div`
   min-height: 100vh;
@@ -9,11 +10,18 @@ export const PageWrapper = styled.div`
 
 export const PageInner = styled(FlexContainer)`
   flex-wrap: nowrap;
-  column-gap: 20px;
+
   position: relative;
+
+  @media screen and ${device.laptop} {
+    column-gap: 20px;
+  }
 `;
 
 export const MainContent = styled.main`
   width: 100%;
-  max-width: 1000px;
+
+  @media screen and ${device.laptop} {
+    max-width: 1000px;
+  }
 `;
