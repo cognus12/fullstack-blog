@@ -1,6 +1,17 @@
 import 'styled-components';
 
-type ColorGroup = 'font' | 'layout' | 'logo' | 'image' | 'tag' | 'link';
+type ColorGroup =
+  | 'font'
+  | 'layout'
+  | 'logo'
+  | 'image'
+  | 'tag'
+  | 'link'
+  | 'header'
+  | 'sidebar'
+  | 'footer'
+  | 'postCard'
+  | 'body';
 
 type ColorScheme = {
   [key in ColorGroup]: {

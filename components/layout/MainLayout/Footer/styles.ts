@@ -3,7 +3,7 @@ import { FlexContainer } from '../../shared';
 
 export const FooterWrapper = styled.footer`
   padding: 40px 0;
-  background: ${({ theme }) => theme.colors.layout.secondary};
+  background: ${({ theme }) => theme.colors.footer.background};
 `;
 
 export const FooterInner = styled(FlexContainer)`
