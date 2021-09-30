@@ -7,7 +7,7 @@ interface AsideProps {
 
 export const Aside = styled.aside<AsideProps>`
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.layout.content};
+  background: ${({ theme }) => theme.colors.sidebar.background};
   padding: 20px;
   position: fixed;
   width: 100%;

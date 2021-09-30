@@ -5,7 +5,7 @@ import { device } from '../../../styles/global';
 
 export const PostRoot = styled(FlexContainer)`
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.layout.content};
+  background: ${({ theme }) => theme.colors.postCard.background};
   flex-direction: column;
 
   @media screen and ${device.laptop} {

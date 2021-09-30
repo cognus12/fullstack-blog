@@ -2,10 +2,11 @@ const baseColors = {
   gray100: '#708090',
   gray200: '#33363b',
   gray300: '#303846',
+  gray400: '#1f2326',
   green100: '#09d3ac',
   white100: '#f0f4f9',
-  black100: '#242526',
-  black200: '#18191a',
+  black100: '#14171a',
+  black200: '#0c1013',
 };
 
 export const theme = {
@@ -13,13 +14,11 @@ export const theme = {
     font: {
       primary: baseColors.white100,
     },
-    layout: {
-      primary: baseColors.black200,
-      secondary: baseColors.black100,
-      content: baseColors.gray300,
-    },
     logo: {
       color: baseColors.green100,
+    },
+    body: {
+      background: baseColors.black100,
     },
     image: {
       background: baseColors.gray200,
@@ -29,6 +28,18 @@ export const theme = {
     },
     link: {
       hover: baseColors.green100,
+    },
+    header: {
+      background: baseColors.black200,
+    },
+    footer: {
+      background: baseColors.black200,
+    },
+    sidebar: {
+      background: baseColors.gray400,
+    },
+    postCard: {
+      background: baseColors.black200,
     },
   },
 };
