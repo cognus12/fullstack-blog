@@ -52,4 +52,8 @@ export const GlobalStyle = createGlobalStyle`
   svg {
     display: block;
   }
+  
+  p {
+    line-height: 36px;
+  }
 `;
