@@ -1,13 +1,11 @@
-import { InMemoryCache, makeVar } from '@apollo/client';
-
-export const lastIdVar = makeVar(undefined);
+import { InMemoryCache } from '@apollo/client';
 
 export const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        getPosts: {
-          keyArgs: () => 'postsData',
+        postsList: {
+          keyArgs: () => 'Post',
           merge(existing = { posts: [], lastId: null, loadedCount: 0 }, incoming) {
             return {
               lastId: incoming.lastId,
@@ -16,6 +14,9 @@ export const cache = new InMemoryCache({
               posts: [...existing.posts, ...incoming.posts],
             };
           },
+        },
+        post: {
+          keyArgs: () => 'Post',
         },
       },
     },

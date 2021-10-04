@@ -2,7 +2,6 @@ import 'styled-components';
 
 type ColorGroup =
   | 'font'
-  | 'layout'
   | 'logo'
   | 'image'
   | 'tag'
