@@ -1,20 +1,29 @@
+import React from 'react';
 import { GetServerSidePropsResult, NextPage } from 'next';
 import Head from 'next/head';
 import { FullPostDTO, PostCtx } from '../../core/db/interfaces/post';
 import { PageSection } from '../../components/layout/shared';
-import { PostArticle } from '../../components/postPage/PostArticle';
-import { postsRepo } from '../../core/db';
+import { initialQuery } from '../../core/apollo/client';
+import { GET_CERTAIN_POST } from '../../core/apollo/client';
+import { PostLoader } from '../../components/postPage/PostLoader';
 
-export interface PostPageProps {
+export interface PostPageProps {}
+export interface FullPostData {
   post: FullPostDTO;
+}
+export interface FullPostQueryVars {
+  slug: string | string[] | undefined;
 }
 
 export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServerSidePropsResult<PostPageProps>> => {
   const { slug } = params;
 
-  const post = await postsRepo.getOne(slug as string);
+  const { data, initialApolloState } = await initialQuery<FullPostData, FullPostQueryVars>({
+    query: GET_CERTAIN_POST,
+    variables: { slug },
+  });
 
-  if (!post) {
+  if (!data.post) {
     return {
       notFound: true,
     };
@@ -22,12 +31,12 @@ export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServer
 
   return {
     props: {
-      post,
+      initialApolloState,
     },
   };
 };
 
-const Post: NextPage<PostPageProps> = ({ post }) => {
+const Post: NextPage<PostPageProps> = () => {
   return (
     <>
       <Head>
@@ -36,7 +45,7 @@ const Post: NextPage<PostPageProps> = ({ post }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageSection>
-        <PostArticle {...post} />
+        <PostLoader />
       </PageSection>
     </>
   );

@@ -6,12 +6,10 @@ import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { GET_ALL_POSTS } from '../../../core/apollo/client';
 
-export interface PostsWrapperProps {}
-
-export const PostsWrapper: React.FC<PostsWrapperProps> = () => {
+export const PostsListLoader: React.FC = () => {
   const {
     data: {
-      getPosts: { posts, lastId, hasMore, loadedCount },
+      postsList: { posts, lastId, hasMore, loadedCount },
     },
     fetchMore,
   } = useQuery(GET_ALL_POSTS);

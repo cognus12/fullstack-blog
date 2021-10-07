@@ -2,39 +2,21 @@ import React from 'react';
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
 import { PageSection } from '../components/layout/shared';
-import { PostsWrapper } from '../components/indexPage/PostsWrapper';
-import { postsRepo } from '../core/db';
-import { initializeApollo } from '../core/apollo/client/client';
+import { PostsListLoader } from '../components/indexPage/PostsListLoader';
 import { GET_ALL_POSTS } from '../core/apollo/client';
 import { wrapWithSharedPageProps, SharedPageProps } from '../core/enhancers';
-import { NormalizedCacheObject } from '@apollo/client';
+import { initialQuery } from '../core/apollo/client';
 
-export interface HomePageOwnProps {
-  initialApolloState: NormalizedCacheObject;
-}
+export interface HomePageOwnProps {}
 
 export interface HomePageProps extends SharedPageProps, HomePageOwnProps {}
 
 const getHomeServerSideProps: GetServerSideProps<HomePageOwnProps> = async () => {
-  const { posts, lastId, hasMore, loadedCount } = await postsRepo.getAll(0);
-
-  const apolloClient = initializeApollo();
-
-  apolloClient.cache.writeQuery({
-    query: GET_ALL_POSTS,
-    data: {
-      getPosts: {
-        lastId,
-        posts,
-        hasMore,
-        loadedCount,
-      },
-    },
-  });
+  const { initialApolloState } = await initialQuery({ query: GET_ALL_POSTS });
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
+      initialApolloState,
     },
   };
 };
@@ -50,7 +32,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageSection>
-        <PostsWrapper />
+        <PostsListLoader />
       </PageSection>
     </>
   );

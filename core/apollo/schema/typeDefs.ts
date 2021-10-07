@@ -9,12 +9,13 @@ export const typeDefs = gql`
   type Post {
     id: String!
     title: String!
-    annotation: String!
     date: String!
-    slug: String!
     views: Int!
-    cover: String
     tags: [Tag]
+    annotation: String!
+    slug: String!
+    cover: String
+    content: String
   }
 
   type PostsData {
@@ -25,6 +26,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    getPosts(loadedCount: Int, lastId: String): PostsData!
+    postsList(loadedCount: Int, lastId: String): PostsData!
+    post(slug: String): Post
   }
 `;

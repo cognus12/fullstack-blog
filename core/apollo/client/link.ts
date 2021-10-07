@@ -1,16 +1,10 @@
 import { HttpLink } from '@apollo/client';
-import { SchemaLink } from '@apollo/client/link/schema';
-import { GRAPHQL_PATH } from '../../config/constants';
-import { clientSchema } from '../schema/clientSchema';
+import { BASE_URL, GRAPHQL_PATH } from '../../config/constants';
 import { isServer } from '../../../helpers';
 
 export const createIsomorphicLink = () => {
-  if (isServer()) {
-    return new SchemaLink({ schema: clientSchema });
-  }
-
   return new HttpLink({
-    uri: GRAPHQL_PATH,
+    uri: isServer() ? `${BASE_URL}${GRAPHQL_PATH}` : GRAPHQL_PATH,
     credentials: 'same-origin',
   });
 };
