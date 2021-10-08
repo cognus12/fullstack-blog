@@ -6,10 +6,7 @@ const CORE_POST_FIELDS = gql`
     title
     date
     views
-    tags {
-      title
-      href
-    }
+    tags
   }
 `;
 

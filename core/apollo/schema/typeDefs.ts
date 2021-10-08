@@ -1,17 +1,12 @@
 import { gql } from 'apollo-server-micro';
 
 export const typeDefs = gql`
-  type Tag {
-    title: String
-    href: String
-  }
-
   type Post {
     id: String!
     title: String!
     date: String!
     views: Int!
-    tags: [Tag]
+    tags: [String]
     annotation: String!
     slug: String!
     cover: String

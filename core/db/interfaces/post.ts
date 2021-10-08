@@ -2,11 +2,6 @@ import { GetServerSideProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Db, MongoClient } from 'mongodb';
 
-export interface HashTagDTO {
-  title: string;
-  href: string;
-}
-
 export interface FullPostDTO {
   id: string;
   title: string;
@@ -16,7 +11,7 @@ export interface FullPostDTO {
   slug: string;
   views: number;
   cover?: string;
-  tags?: HashTagDTO[];
+  tags?: string[];
 }
 
 export interface PostPreviewDTO extends Omit<FullPostDTO, 'content'> {}
