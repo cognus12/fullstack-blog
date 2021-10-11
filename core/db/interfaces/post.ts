@@ -31,9 +31,19 @@ export type DbInstance = {
   db: Db;
 };
 
+export interface HashTagDTO {
+  tag: string;
+  count?: number;
+}
+
+export interface HashTagUI extends Omit<HashTagDTO, 'count'> {
+  href: string;
+}
+
 export interface PostRepoStruct {
   getAll: (loadedCount: number, lastId?: FullPostDTO['id']) => Promise<PostsDataDTO>;
   getOne: (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
+  getAllTags: () => Promise<HashTagDTO[]>;
 }
 
 export interface PostsDataDTO {

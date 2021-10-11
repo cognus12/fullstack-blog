@@ -6,7 +6,7 @@ import { useClickOutSide } from '../../../../core/hooks';
 
 export interface SidebarProps {}
 
-export const Sidebar: React.FC<SidebarProps> = () => {
+const SidebarView: React.FC<SidebarProps> = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   const onClickBurger = () => setOpen(!isOpen);
@@ -23,3 +23,5 @@ export const Sidebar: React.FC<SidebarProps> = () => {
     </div>
   );
 };
+
+export const Sidebar = React.memo(SidebarView);

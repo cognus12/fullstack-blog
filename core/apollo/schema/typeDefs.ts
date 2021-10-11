@@ -20,8 +20,14 @@ export const typeDefs = gql`
     hasMore: Boolean
   }
 
+  type HashTag {
+    tag: String!
+    count: Int
+  }
+
   type Query {
     postsList(loadedCount: Int, lastId: String): PostsData!
     post(slug: String): Post
+    allTags: [HashTag]!
   }
 `;
