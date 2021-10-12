@@ -1,4 +1,4 @@
-import { DbInstance, FullPostDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
+import { DbInstance, FullPostDTO, HashTagDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../config/constants';
@@ -91,5 +91,23 @@ export class PostRepoMongo implements PostRepoStruct {
     }
 
     return result;
+  };
+
+  public getAllTags = async (): Promise<HashTagDTO[]> => {
+    const { db } = await this._connect();
+
+    const cursor = await db.collection('tags').find({});
+
+    const count = await cursor.count();
+
+    if (count === 0) {
+      return [];
+    }
+
+    const tags = await cursor.toArray();
+
+    await cursor.close();
+
+    return tags as HashTagDTO[];
   };
 }

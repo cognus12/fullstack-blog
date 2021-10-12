@@ -9,10 +9,17 @@ import {
   ReadMoreLink,
   PostCardInfo,
 } from './styles';
-import { PostPreviewDTO } from '../../../core/db/interfaces/post';
+import { HashTagUI, PostPreviewDTO } from '../../../core/db/interfaces/post';
 import { ViewsCounter } from '../../shared/ViewsCounter';
+import { formatHashTagToHref, formatHashTagToView } from '../../../helpers';
 
 export interface PostCardProps extends PostPreviewDTO {}
+
+const normalizeHashTags = (tags: string[]): HashTagUI[] =>
+  tags.map((tag) => ({
+    tag: formatHashTagToView(tag),
+    href: `/search?tag=${formatHashTagToHref(tag)}`,
+  }));
 
 const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug, date, views = 0 }) => {
   return (
@@ -26,7 +33,7 @@ const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags
           <span>{date}</span>
           <ViewsCounter views={views} />
         </PostCardInfo>
-        {tags && <PostHashTags tags={tags} />}
+        {tags && <PostHashTags tags={normalizeHashTags(tags)} />}
         <p>{annotation}</p>
         <Link href={`/post/${slug}`} passHref>
           <ReadMoreLink>Read more</ReadMoreLink>

@@ -1,16 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 import { Tag } from './style';
+import { HashTagUI } from '../../../../core/db/interfaces/post';
 
-export interface HashTagProps {
-  tag: string;
-}
+export interface HashTagProps extends HashTagUI {}
 
-const formatHashTagToView = (str: string): string => (str[0] === '#' ? str : `#${str}`);
-const formatGashTagToHref = (str: string): string => (str[0] === '#' ? str.slice(1) : str);
-
-export const HashTag: React.FC<HashTagProps> = ({ tag }) => (
-  <Link href={`/search?tag=${formatGashTagToHref(tag)}`} passHref>
-    <Tag>{formatHashTagToView(tag)}</Tag>
+export const HashTag: React.FC<HashTagProps> = ({ tag, href }) => (
+  <Link href={href} passHref>
+    <Tag>{tag}</Tag>
   </Link>
 );

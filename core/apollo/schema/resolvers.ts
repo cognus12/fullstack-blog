@@ -22,5 +22,8 @@ export const resolvers = {
 
       return await postsRepo.getOne(slug as string);
     },
+    allTags: async () => {
+      return await postsRepo.getAllTags();
+    },
   },
 };
