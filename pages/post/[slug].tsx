@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next';
 import Head from 'next/head';
 import { PageSection } from '../../components/layout/shared';
 import { queryInitialApolloState } from '../../core/graphql-client';
-import { GET_CERTAIN_POST } from '../../core/graphql-client';
+import { QUERY_CERTAIN_POST } from '../../core/graphql-client';
 import { PostLoader } from '../../components/postPage/PostLoader';
 import { ParsedUrlQuery } from 'querystring';
 import { FullPostDTO } from '../../contracts/PostDTO';
@@ -29,7 +29,7 @@ export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServer
   const { slug } = params;
 
   const { data, initialApolloState } = await queryInitialApolloState<FullPostData, FullPostQueryVars>({
-    query: GET_CERTAIN_POST,
+    query: QUERY_CERTAIN_POST,
     variables: { slug },
   });
 

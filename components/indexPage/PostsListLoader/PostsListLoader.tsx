@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { PostPreviewDTO } from '../../../backend/db/interfaces/post-repo';
 import { LoadMoreWrapper, PostsFeed } from './styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { GET_ALL_POSTS } from '../../../core/graphql-client';
+import { QUERY_ALL_POSTS } from '../../../core/graphql-client';
+import { PostPreviewDTO } from '../../../contracts/PostDTO';
 
 export const PostsListLoader: React.FC = () => {
   const {
@@ -12,7 +12,7 @@ export const PostsListLoader: React.FC = () => {
       postsList: { posts, lastId, hasMore, loadedCount },
     },
     fetchMore,
-  } = useQuery(GET_ALL_POSTS);
+  } = useQuery(QUERY_ALL_POSTS);
 
   return (
     <>
