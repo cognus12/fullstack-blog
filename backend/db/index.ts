@@ -1,6 +1,6 @@
 import { PostsRepoStub } from './PostRepoStub';
 import { PostRepoMongo } from './postRepoMongo';
-import { PostRepoStruct } from './interfaces/post';
+import { PostRepoStruct } from './interfaces/post-repo';
 
 const mode = process.env.DB_MODE || 'stub';
 

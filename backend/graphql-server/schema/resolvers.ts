@@ -1,4 +1,4 @@
-import { FullPostDTO } from '../../db/interfaces/post';
+import { FullPostDTO } from '../../db/interfaces/post-repo';
 import { postsRepo } from '../../db';
 
 export interface PostsListArgs {

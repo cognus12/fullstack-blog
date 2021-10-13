@@ -1,25 +1,35 @@
 import React from 'react';
-import { GetServerSidePropsResult, NextPage } from 'next';
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next';
 import Head from 'next/head';
-import { FullPostDTO, PostCtx } from '../../core/db/interfaces/post';
 import { PageSection } from '../../components/layout/shared';
-import { initialQuery } from '../../core/apollo/client';
-import { GET_CERTAIN_POST } from '../../core/apollo/client';
+import { queryInitialApolloState } from '../../core/graphql-client';
+import { QUERY_CERTAIN_POST } from '../../core/graphql-client';
 import { PostLoader } from '../../components/postPage/PostLoader';
+import { ParsedUrlQuery } from 'querystring';
+import { FullPostDTO } from '../../contracts/PostDTO';
 
-export interface PostPageProps {}
-export interface FullPostData {
+interface PostPageProps {}
+
+interface FullPostData {
   post: FullPostDTO;
 }
-export interface FullPostQueryVars {
+interface FullPostQueryVars {
   slug: string | string[] | undefined;
+}
+
+interface PostCtx extends GetServerSideProps<ParsedUrlQuery> {
+  params: PostParams;
+}
+
+interface PostParams extends ParsedUrlQuery {
+  id: FullPostDTO['id'];
 }
 
 export const getServerSideProps = async ({ params }: PostCtx): Promise<GetServerSidePropsResult<PostPageProps>> => {
   const { slug } = params;
 
-  const { data, initialApolloState } = await initialQuery<FullPostData, FullPostQueryVars>({
-    query: GET_CERTAIN_POST,
+  const { data, initialApolloState } = await queryInitialApolloState<FullPostData, FullPostQueryVars>({
+    query: QUERY_CERTAIN_POST,
     variables: { slug },
   });
 

@@ -1,4 +1,4 @@
-import { PostsList, FullPostDTO } from '../../interfaces/post';
+import { PostsList, FullPostDTO } from '../../interfaces/post-repo';
 
 const fakePosts: FullPostDTO[] = [
   {

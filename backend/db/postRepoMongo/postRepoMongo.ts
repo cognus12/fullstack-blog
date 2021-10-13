@@ -1,8 +1,10 @@
-import { DbInstance, FullPostDTO, HashTagDTO, PostPreviewDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
+import { DbInstance, PostRepoStruct, PostsDataDTO } from '../interfaces/post-repo';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
-import { POSTS_PAGE_SIZE } from '../../config/constants';
+import { POSTS_PAGE_SIZE } from '../../../config/constants';
 import { ObjectId } from 'mongodb';
+import { FullPostDTO, PostPreviewDTO } from '../../../contracts/PostDTO';
+import { HashTagDTO } from '../../../contracts/HashTagDTO';
 
 interface Document {
   [key: string]: any;
