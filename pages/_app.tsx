@@ -4,7 +4,7 @@ import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { MainLayout } from '../components/layout/MainLayout';
 import { AppProps } from 'next/app';
-import { useApollo } from '../core/apollo/client';
+import { useApollo } from '../core/graphql-client';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const apolloClient = useApollo(pageProps.initialApolloState);

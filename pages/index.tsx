@@ -3,16 +3,16 @@ import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from '
 import Head from 'next/head';
 import { PageSection } from '../components/layout/shared';
 import { PostsListLoader } from '../components/indexPage/PostsListLoader';
-import { GET_ALL_POSTS } from '../core/apollo/client';
-import { wrapWithSharedPageProps, SharedPageProps } from '../core/enhancers';
-import { initialQuery } from '../core/apollo/client';
+import { GET_ALL_POSTS } from '../core/graphql-client';
+import { wrapWithSharedPageProps, SharedPageProps } from '../backend/enhancers';
+import { queryInitialApolloState } from '../core/graphql-client';
 
 export interface HomePageOwnProps {}
 
 export interface HomePageProps extends SharedPageProps, HomePageOwnProps {}
 
 const getHomeServerSideProps: GetServerSideProps<HomePageOwnProps> = async () => {
-  const { initialApolloState } = await initialQuery({ query: GET_ALL_POSTS });
+  const { initialApolloState } = await queryInitialApolloState({ query: GET_ALL_POSTS });
 
   return {
     props: {

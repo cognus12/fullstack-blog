@@ -9,7 +9,7 @@ import {
   ReadMoreLink,
   PostCardInfo,
 } from './styles';
-import { HashTagUI, PostPreviewDTO } from '../../../core/db/interfaces/post';
+import { HashTagUI, PostPreviewDTO } from '../../../backend/db/interfaces/post-repo';
 import { ViewsCounter } from '../../shared/ViewsCounter';
 import { formatHashTagToHref, formatHashTagToView } from '../../../helpers';
 

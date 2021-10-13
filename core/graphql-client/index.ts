@@ -1,3 +1,3 @@
 export * from './hooks';
 export * from './queries/queries';
-export * from './initialQuery';
+export * from './apolloClient/queryInitialApolloState';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FullPostDTO } from '../../../core/db/interfaces/post';
+import { FullPostDTO } from '../../../backend/db/interfaces/post-repo';
 import { ViewsCounter } from '../../shared/ViewsCounter';
 import { Article, ArticleInfo, PostContent } from './styles';
 

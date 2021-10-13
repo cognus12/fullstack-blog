@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { PostPreviewDTO } from '../../../core/db/interfaces/post';
+import { PostPreviewDTO } from '../../../backend/db/interfaces/post-repo';
 import { LoadMoreWrapper, PostsFeed } from './styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { GET_ALL_POSTS } from '../../../core/apollo/client';
+import { GET_ALL_POSTS } from '../../../core/graphql-client';
 
 export const PostsListLoader: React.FC = () => {
   const {

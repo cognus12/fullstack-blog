@@ -1,5 +1,5 @@
 import { stubGetPost, stubGetPostsList } from './stub/stubs';
-import { FullPostDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post';
+import { FullPostDTO, PostRepoStruct, PostsDataDTO } from '../interfaces/post-repo';
 
 export class PostsRepoStub implements PostRepoStruct {
   getAll = async (): Promise<PostsDataDTO> => {

@@ -1,14 +1,22 @@
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client';
 import { cache } from './cache';
-import { createIsomorphicLink } from './link';
+
 import { isServer } from '../../../helpers';
+import { BASE_URL, GRAPHQL_PATH } from '../../../config/constants';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
+
+const createLink = () => {
+  return new HttpLink({
+    uri: isServer() ? `${BASE_URL}${GRAPHQL_PATH}` : GRAPHQL_PATH,
+    credentials: 'same-origin',
+  });
+};
 
 const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: isServer(),
-    link: createIsomorphicLink(),
+    link: createLink(),
     cache: cache,
     connectToDevTools: true,
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
-import { GET_CERTAIN_POST } from '../../../core/apollo/client';
+import { GET_CERTAIN_POST } from '../../../core/graphql-client';
 import { PostArticle } from '../PostArticle';
 
 export const PostLoader: React.FC = () => {
