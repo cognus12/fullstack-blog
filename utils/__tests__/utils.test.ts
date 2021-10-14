@@ -37,12 +37,12 @@ describe('Utils', () => {
   });
 
   describe('takeLast', () => {
-    it('should return last element of array');
+    it('should return last element of array', () => {
+      const arr = [1, 2, 3];
 
-    const arr = [1, 2, 3];
+      const expected = 3;
 
-    const expected = 3;
-
-    expect(takeLast(arr)).toBe(expected);
+      expect(takeLast(arr)).toBe(expected);
+    });
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from '../../shared';
-import { BlogAuthorInfo, BlogAuthorName, BlogAuthorWrapper, FooterInner, FooterWrapper } from './styles';
+import { Container } from '../../../../styles/containers';
+import { BlogAuthorInfo, BlogAuthorName, BlogAuthorWrapper, FooterInner, FooterWrapper } from './Footer.styles';
 
 export interface FooterProps {}
 

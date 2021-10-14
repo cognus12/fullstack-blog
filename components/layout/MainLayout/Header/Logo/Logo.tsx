@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { LogoText } from './styles';
+import { LogoText } from './Logo.styles';
 
 export interface LogoProps {}
 
