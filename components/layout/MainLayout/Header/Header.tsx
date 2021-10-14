@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeaderInner, HeaderWrapper } from './styles';
-import { Container } from '../../shared';
+import { HeaderInner, HeaderWrapper } from './Header.styles';
 import { Logo } from './Logo';
+import { Container } from '../../../../styles/containers';
 
 export interface HeaderProps {}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Aside } from './styles';
+import { Aside } from './Sidebar.styles';
 import { SideBarTags } from './SideBarTags';
 import { Burger } from './Burger';
 import { useClickOutSide } from '../../../../core/hooks';

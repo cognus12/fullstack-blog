@@ -1,9 +1,10 @@
 import React from 'react';
-import { MainContent, PageInner, PageWrapper } from './styles';
-import { Container } from '../shared';
+import { MainContent, PageInner, PageWrapper } from './MainLayout.styles';
+
 import { Header } from './Header';
-import { Sidebar } from './Sidebar';
-import { Footer } from './Footer/Footer';
+import { Footer } from './Footer';
+import { Container } from '../../../styles/containers';
+import { Sidebar } from './Sidebar/Sidebar';
 
 export interface MainLayoutProps {}
 
