@@ -20,14 +20,14 @@ export interface PostCardProps extends PostPreviewDTO {}
 const normalizeHashTags = (tags: string[]): HashTagUI[] =>
   tags.map((tag) => ({
     tag: formatHashTagToView(tag),
-    href: `/search?tag=${formatHashTagToHref(tag)}`,
+    href: `/tags/${formatHashTagToHref(tag)}`,
   }));
 
 const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug, date, views = 0 }) => {
   return (
     <PostRoot as="article">
       <PostCoverWrapper>
-        <img src={cover} alt="Post cover" />
+        <img src={`/${cover}`} alt="Post cover" />
       </PostCoverWrapper>
       <PostCardContent>
         <PostCardTitle>{title}</PostCardTitle>

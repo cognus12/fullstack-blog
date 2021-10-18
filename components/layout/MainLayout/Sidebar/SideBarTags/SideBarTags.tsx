@@ -8,7 +8,7 @@ import { HashTagDTO, HashTagUI } from '../../../../../contracts/HashTagDTO';
 const normalizeHashTags = (tags: HashTagDTO[]): HashTagUI[] =>
   tags.map(({ tag, count }) => ({
     tag: `${formatHashTagToView(tag)} ${count ? `(${count})` : ''}`,
-    href: `/search?tag=${formatHashTagToHref(tag)}`,
+    href: `/tags/${formatHashTagToHref(tag)}`,
   }));
 
 export const SideBarTags: React.FC = () => {

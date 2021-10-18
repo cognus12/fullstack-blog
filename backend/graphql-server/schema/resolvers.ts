@@ -1,9 +1,10 @@
-import { FullPostDTO } from '../../db/interfaces/post-repo';
 import { postsRepo } from '../../db';
+import { FullPostDTO } from '../../../contracts/PostDTO';
 
 export interface PostsListArgs {
   lastId: FullPostDTO['id'];
   loadedCount: number;
+  tag?: string;
 }
 
 export interface GetOnePostArgs {
@@ -13,9 +14,9 @@ export interface GetOnePostArgs {
 export const resolvers = {
   Query: {
     postsList: async (_: unknown, _args: PostsListArgs) => {
-      const { lastId, loadedCount } = _args;
+      const { lastId, loadedCount, tag } = _args;
 
-      return await postsRepo.getAll(loadedCount, lastId);
+      return await postsRepo.getAll(loadedCount, { lastId, tag });
     },
     post: async (_: unknown, _args: GetOnePostArgs) => {
       const { slug } = _args;

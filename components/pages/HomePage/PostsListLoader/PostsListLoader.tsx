@@ -5,14 +5,17 @@ import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { QUERY_ALL_POSTS } from '../../../../core/graphql-client';
 import { PostPreviewDTO } from '../../../../contracts/PostDTO';
+import { useSlug } from '../../../../core/hooks';
 
 export const PostsListLoader: React.FC = () => {
+  const tag = useSlug();
+
   const {
     data: {
       postsList: { posts, lastId, hasMore, loadedCount },
     },
     fetchMore,
-  } = useQuery(QUERY_ALL_POSTS);
+  } = useQuery(QUERY_ALL_POSTS, { variables: { tag } });
 
   return (
     <>
@@ -22,7 +25,7 @@ export const PostsListLoader: React.FC = () => {
         ))}
       </PostsFeed>
       <LoadMoreWrapper>
-        {hasMore && <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount } })} />}
+        {hasMore && <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })} />}
       </LoadMoreWrapper>
     </>
   );

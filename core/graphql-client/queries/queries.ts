@@ -20,8 +20,8 @@ const FRAGMENT_ALL_TAGS = gql`
 export const QUERY_ALL_POSTS = gql`
   ${FRAGMENT_CORE_POST_FIELDS}
   ${FRAGMENT_ALL_TAGS}
-  query ($loadedCount: Int, $lastId: String) {
-    postsList(loadedCount: $loadedCount, lastId: $lastId) {
+  query ($loadedCount: Int, $lastId: String, $tag: String) {
+    postsList(loadedCount: $loadedCount, lastId: $lastId, tag: $tag) {
       posts {
         ...CorePostFields
         slug

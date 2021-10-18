@@ -7,8 +7,13 @@ export type DbInstance = {
   db: Db;
 };
 
+export interface GetAllArgs {
+  lastId?: FullPostDTO['id'];
+  tag?: string;
+}
+
 export interface PostRepoStruct {
-  getAll: (loadedCount: number, lastId?: FullPostDTO['id']) => Promise<PostsDataDTO>;
+  getAll: (loadedCount: number, args?: GetAllArgs) => Promise<PostsDataDTO>;
   getOne: (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
   getAllTags: () => Promise<HashTagDTO[]>;
 }
