@@ -1,13 +1,18 @@
-import { DbInstance, PostRepoStruct, PostsDataDTO } from '../interfaces/post-repo';
+import { DbInstance, GetAllArgs, PostRepoStruct, PostsDataDTO } from '../interfaces/post-repo';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../../config/constants';
-import { ObjectId } from 'mongodb';
+import { Filter, FindOptions, ObjectId } from 'mongodb';
 import { FullPostDTO, PostPreviewDTO } from '../../../contracts/PostDTO';
 import { HashTagDTO } from '../../../contracts/HashTagDTO';
 
 interface Document {
   [key: string]: any;
+}
+
+interface FindAllQueryOptions {
+  filter: Filter<Document>;
+  options?: FindOptions;
 }
 
 export class PostRepoMongo implements PostRepoStruct {
@@ -36,6 +41,33 @@ export class PostRepoMongo implements PostRepoStruct {
     return lastPost ? lastPost._id.toHexString() : undefined;
   };
 
+  private _strToObjectId = (stringId: string) => new ObjectId(stringId);
+
+  private _configureGetAllQuery = (args: GetAllArgs = {}, existingFilter?: Filter<Document>): FindAllQueryOptions => {
+    const { lastId, tag } = args;
+
+    if (existingFilter && lastId) {
+      const objectId = this._strToObjectId(lastId);
+      existingFilter._id = { $gt: objectId };
+
+      return {
+        filter: existingFilter,
+      };
+    }
+
+    const filter: Filter<Document> = {};
+    const options = { projection: { content: 0 } };
+
+    if (tag) {
+      filter.tags = { $all: [`#${tag}`] };
+    }
+
+    return {
+      filter,
+      options,
+    };
+  };
+
   public getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
     const { db } = await this._connect();
 
@@ -48,18 +80,20 @@ export class PostRepoMongo implements PostRepoStruct {
     return this._normalizePost<FullPostDTO>(post, ['_id']);
   };
 
-  public getAll = async (loadedCount = 0, lastId?: string): Promise<PostsDataDTO> => {
+  public getAll = async (loadedCount = 0, args: GetAllArgs = {}): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
-    const objectId = new ObjectId(lastId);
+    const { filter, options } = this._configureGetAllQuery(args);
 
-    const filter = lastId ? { _id: { $gt: objectId } } : {};
+    const cursor = db.collection('posts').find(filter, options);
 
-    const options = { projection: { content: 0 } };
+    const total = await cursor.count();
 
-    const cursor = await db.collection('posts').find(filter, options).limit(POSTS_PAGE_SIZE);
+    const { filter: filterWithLastId } = this._configureGetAllQuery(args, filter);
 
-    const total = await db.collection('posts').countDocuments();
+    cursor.filter(filterWithLastId);
+
+    cursor.limit(POSTS_PAGE_SIZE);
 
     const count = await cursor.count();
 
