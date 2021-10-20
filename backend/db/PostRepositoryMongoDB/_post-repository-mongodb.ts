@@ -1,10 +1,15 @@
-import { DbInstance, GetAllArgs, PostRepoStruct, PostsDataDTO } from '../interfaces/post-repo';
+import { GetAllArgs, PostRepositoryBase } from '../PostRepositoryBase';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../../config/constants';
-import { Filter, FindOptions, ObjectId } from 'mongodb';
-import { FullPostDTO, PostPreviewDTO } from '../../../contracts/PostDTO';
+import { Db, Filter, FindOptions, MongoClient, ObjectId } from 'mongodb';
+import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../../contracts/PostDTO';
 import { HashTagDTO } from '../../../contracts/HashTagDTO';
+
+export type DbInstance = {
+  client: MongoClient;
+  db: Db;
+};
 
 interface Document {
   [key: string]: any;
@@ -15,7 +20,7 @@ interface FindAllQueryOptions {
   options?: FindOptions;
 }
 
-export class PostRepoMongo implements PostRepoStruct {
+export class PostRepositoryMongodb extends PostRepositoryBase {
   private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
   };

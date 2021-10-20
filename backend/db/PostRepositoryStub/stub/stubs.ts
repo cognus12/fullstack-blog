@@ -1,4 +1,5 @@
-import { PostsList, FullPostDTO } from '../../interfaces/post-repo';
+import { HashTagDTO } from '../../../../contracts/HashTagDTO';
+import { FullPostDTO, PostsList } from '../../../../contracts/PostDTO';
 
 const fakePosts: FullPostDTO[] = [
   {
@@ -6,11 +7,7 @@ const fakePosts: FullPostDTO[] = [
     title: 'First post',
     annotation: 'Post annotation: some not very large text of few sentences',
     cover: 'post-cover-ex.jpg',
-    tags: [
-      { title: '#example', href: '/' },
-      { title: '#js', href: '/' },
-      { title: '#golang', href: '/' },
-    ],
+    tags: ['#example', '#react', '#nest'],
     content: '<p>This is <strong>first</strong> post</p>',
     date: '01.09.2021',
     views: 0,
@@ -21,6 +18,7 @@ const fakePosts: FullPostDTO[] = [
     title: 'Second post',
     annotation: 'Post annotation: some not very large text of few sentences',
     cover: 'post-cover-ex.jpg',
+    tags: ['#life'],
     content: '<p>This is <strong>second</strong> post</p><ul><li>item 1</li><li>item 2</li></ul>',
     date: '01.09.2021',
     views: 100,
@@ -31,11 +29,7 @@ const fakePosts: FullPostDTO[] = [
     title: 'Third post',
     annotation: 'Post annotation: some not very large text of few sentences',
     cover: 'post-cover-ex.jpg',
-    tags: [
-      { title: '#example', href: '/' },
-      { title: '#react', href: '/' },
-      { title: '#nest', href: '/' },
-    ],
+    tags: ['#example', '#react', '#nest'],
     content: '<p>This is <strong>third</strong> post</p>',
     date: '01.09.2021',
     views: 1020,
@@ -56,11 +50,7 @@ const fakePosts: FullPostDTO[] = [
     title: 'Fifth post',
     annotation: 'Post annotation: some not very large text of few sentences',
     cover: 'post-cover-ex.jpg',
-    tags: [
-      { title: '#example', href: '/' },
-      { title: '#js', href: '/' },
-      { title: '#golang', href: '/' },
-    ],
+    tags: ['#example', '#react', '#nest'],
     content: '<p>This is <strong>first</strong> post</p>',
     date: '01.09.2021',
     views: 0,
@@ -81,11 +71,7 @@ const fakePosts: FullPostDTO[] = [
     title: 'Sevent post',
     annotation: 'Post annotation: some not very large text of few sentences',
     cover: 'post-cover-ex.jpg',
-    tags: [
-      { title: '#example', href: '/' },
-      { title: '#react', href: '/' },
-      { title: '#nest', href: '/' },
-    ],
+    tags: ['#example', '#react', '#nest'],
     content: '<p>This is <strong>third</strong> post</p>',
     date: '01.09.2021',
     views: 1020,
@@ -103,7 +89,26 @@ const fakePosts: FullPostDTO[] = [
   },
 ];
 
-export const stubGetPostsList = (): Promise<PostsList> => Promise.resolve(fakePosts);
+const countByTag = (tag: string): number => fakePosts.filter((p) => p.tags && p.tags.includes(tag)).length;
+
+const generateFakeTags = (posts: FullPostDTO[]) => {
+  const rawTags = posts.reduce((acc, current) => {
+    const currentTags = current.tags ? current.tags : [];
+    return [...acc, ...currentTags];
+  }, [] as string[]);
+
+  return Array.from(new Set(rawTags)).map((tag) => ({ tag, count: countByTag(tag) }));
+};
+
+export const stubGetPostsList = (tag?: string): Promise<PostsList> => {
+  if (tag) {
+    return Promise.resolve(fakePosts.filter((p) => p.tags && p.tags.includes(`#${tag}`)));
+  }
+
+  return Promise.resolve(fakePosts);
+};
 
 export const stubGetPost = (slug: FullPostDTO['slug']): Promise<FullPostDTO | undefined> =>
   Promise.resolve(fakePosts.find((post) => post.slug === slug));
+
+export const stubGetAllTags = (): Promise<HashTagDTO[]> => Promise.resolve(generateFakeTags(fakePosts));

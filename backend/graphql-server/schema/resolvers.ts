@@ -1,5 +1,5 @@
-import { postsRepo } from '../../db';
 import { FullPostDTO } from '../../../contracts/PostDTO';
+import { postService } from '../../services/PostService';
 
 export interface PostsListArgs {
   lastId: FullPostDTO['id'];
@@ -16,15 +16,15 @@ export const resolvers = {
     postsList: async (_: unknown, _args: PostsListArgs) => {
       const { lastId, loadedCount, tag } = _args;
 
-      return await postsRepo.getAll(loadedCount, { lastId, tag });
+      return await postService.getAll(loadedCount, { lastId, tag });
     },
     post: async (_: unknown, _args: GetOnePostArgs) => {
       const { slug } = _args;
 
-      return await postsRepo.getOne(slug as string);
+      return await postService.getOne(slug as string);
     },
     allTags: async () => {
-      return await postsRepo.getAllTags();
+      return await postService.getAllTags();
     },
   },
 };
