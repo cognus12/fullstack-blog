@@ -12,9 +12,13 @@ const normalizeHashTags = (tags: HashTagDTO[]): HashTagUI[] =>
   }));
 
 export const SideBarTags: React.FC = () => {
-  const {
-    data: { allTags },
-  } = useQuery(QUERY_ALL_TAGS);
+  const { data, error } = useQuery(QUERY_ALL_TAGS);
+
+  if (error || !data) {
+    return null;
+  }
+
+  const { allTags } = data;
 
   const tags = normalizeHashTags(allTags);
 
