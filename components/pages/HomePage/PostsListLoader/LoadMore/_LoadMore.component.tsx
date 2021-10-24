@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadMoreButton } from './LoadMore.style';
+import { LoadMoreButton } from './_LoadMore.style';
 
 export interface LoadMoreProps {
   fetcher: () => void;

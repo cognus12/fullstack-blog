@@ -1,1 +1,1 @@
-export * from './HashTags';
+export * from './_HashTags.component';

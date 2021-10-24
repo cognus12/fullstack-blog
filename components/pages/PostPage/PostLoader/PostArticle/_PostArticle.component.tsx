@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Article, ArticleInfo, PostContent } from './PostArticle.styles';
-import { FullPostDTO } from '../../../../contracts/PostDTO';
-import { ViewsCounter } from '../../../common/ViewsCounter/ViewsCounter';
+import { Article, ArticleInfo, PostContent } from './_PostArticle.styles';
+import { FullPostDTO } from '../../../../../contracts/PostDTO';
+import { ViewsCounter } from '../../../../common/ViewsCounter/_ViewsCounter.component';
 
 export interface PostArticleProps extends FullPostDTO {}
 

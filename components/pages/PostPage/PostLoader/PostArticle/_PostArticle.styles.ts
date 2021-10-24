@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexContainer } from '../../../../styles/containers';
+import { FlexContainer } from '../../../../../styles/containers';
 
 export const Article = styled.article`
   background: ${({ theme }) => theme.colors.fullPost.background};

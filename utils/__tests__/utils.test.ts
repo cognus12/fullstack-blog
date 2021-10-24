@@ -1,6 +1,6 @@
-import { pick } from '../pick';
-import { omit } from '../omit';
-import { takeLast } from '../takeLast';
+import { pick } from '../_pick';
+import { omit } from '../_omit';
+import { takeLast } from '../_takeLast';
 
 describe('Utils', () => {
   describe('pick', () => {

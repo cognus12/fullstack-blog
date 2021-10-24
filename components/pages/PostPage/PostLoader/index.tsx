@@ -1,1 +1,1 @@
-export * from './PostLoader';
+export * from './_PostLoader.component';

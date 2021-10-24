@@ -1,4 +1,4 @@
-import { GeneralObject } from './types';
+import { GeneralObject } from './_types';
 
 export const pick = <S extends GeneralObject, K extends string[]>(source: S, keys: K): S => {
   return keys.reduce((acc, key) => {

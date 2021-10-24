@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { LoadMoreWrapper, PostsFeed } from './PostsListLoader.styles';
+import { LoadMoreWrapper, PostsFeed } from './_PostsListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { QUERY_ALL_POSTS } from '../../../../core/graphql-client';

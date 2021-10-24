@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewsCounterRoot, ViewsEyeIcon } from './ViewsCounter.style';
+import { ViewsCounterRoot, ViewsEyeIcon } from './_ViewsCounter.style';
 
 export interface ViewsCounterProps {
   views: number;

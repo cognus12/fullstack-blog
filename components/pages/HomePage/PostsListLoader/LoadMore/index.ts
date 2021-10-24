@@ -1,1 +1,1 @@
-export * from './LoadMore';
+export * from './_LoadMore.component';

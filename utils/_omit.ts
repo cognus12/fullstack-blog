@@ -1,4 +1,4 @@
-import { GeneralObject } from './types';
+import { GeneralObject } from './_types';
 
 export const omit = <S extends GeneralObject, K extends string[]>(source: S, keys: K): S => {
   return Object.keys(source).reduce((acc, key) => {
