@@ -6,7 +6,6 @@ export const Article = styled.article`
   padding: 20px;
   border-radius: 15px;
   max-width: 1000px;
-  min-height: 71.5vh;
 `;
 
 export const ArticleInfo = styled(FlexContainer)`

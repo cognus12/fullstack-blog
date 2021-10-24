@@ -24,9 +24,11 @@ export const PostsListLoader: React.FC = () => {
           <PostCard key={post.id} {...post} />
         ))}
       </PostsFeed>
-      <LoadMoreWrapper>
-        {hasMore && <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })} />}
-      </LoadMoreWrapper>
+      {hasMore && (
+        <LoadMoreWrapper>
+          <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })} />
+        </LoadMoreWrapper>
+      )}
     </>
   );
 };
