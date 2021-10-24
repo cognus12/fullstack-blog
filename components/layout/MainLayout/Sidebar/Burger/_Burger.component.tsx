@@ -1,5 +1,5 @@
 import React from 'react';
-import { BurgerButton } from './Burger.styles';
+import { BurgerButton } from './_Burger.styles';
 
 export interface BurgerProps {
   onClick: () => void;

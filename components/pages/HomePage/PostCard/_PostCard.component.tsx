@@ -8,10 +8,10 @@ import {
   PostHashTags,
   ReadMoreLink,
   PostCardInfo,
-} from './PostCard.styles';
+} from './_PostCard.styles';
 
 import { formatHashTagToHref, formatHashTagToView } from '../../../../helpers';
-import { ViewsCounter } from '../../../common/ViewsCounter/ViewsCounter';
+import { ViewsCounter } from '../../../common/ViewsCounter/_ViewsCounter.component';
 import { HashTagUI } from '../../../../contracts/HashTagDTO';
 import { PostPreviewDTO } from '../../../../contracts/PostDTO';
 

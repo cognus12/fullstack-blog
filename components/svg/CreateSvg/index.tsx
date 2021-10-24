@@ -1,1 +1,1 @@
-export * from './CreateSVG';
+export * from './_СreateSVG.component';

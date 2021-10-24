@@ -1,1 +1,1 @@
-export * from './ViewsCounter.style';
+export * from './_ViewsCounter.style';

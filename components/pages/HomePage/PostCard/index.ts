@@ -1,1 +1,1 @@
-export * from './PostCard';
+export * from './_PostCard.component';

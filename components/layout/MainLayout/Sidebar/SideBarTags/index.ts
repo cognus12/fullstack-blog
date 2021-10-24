@@ -1,1 +1,1 @@
-export * from './SideBarTags';
+export * from './_SideBarTags.component';
