@@ -11,7 +11,8 @@ type ColorGroup =
   | 'footer'
   | 'postCard'
   | 'body'
-  | 'fullPost';
+  | 'fullPost'
+  | 'common';
 
 type ColorScheme = {
   [key in ColorGroup]: {
