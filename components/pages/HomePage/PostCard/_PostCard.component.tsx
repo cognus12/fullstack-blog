@@ -23,7 +23,7 @@ const normalizeHashTags = (tags: string[]): HashTagUI[] =>
     href: `/tags/${formatHashTagToHref(tag)}`,
   }));
 
-const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug, date, views = 0 }) => {
+const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug, postDate, views = 0 }) => {
   return (
     <PostRoot as="article">
       <PostCoverWrapper>
@@ -32,7 +32,7 @@ const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags
       <PostCardContent>
         <PostCardTitle>{title}</PostCardTitle>
         <PostCardInfo>
-          <span>{date}</span>
+          <span>{postDate}</span>
           <ViewsCounter views={views} />
         </PostCardInfo>
         {tags && <PostHashTags tags={normalizeHashTags(tags)} />}

@@ -3,7 +3,7 @@ export interface FullPostDTO {
   title: string;
   annotation: string;
   content: string;
-  date: string;
+  postDate: Date;
   slug: string;
   views: number;
   cover?: string;

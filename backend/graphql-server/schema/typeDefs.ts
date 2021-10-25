@@ -1,10 +1,12 @@
 import { gql } from 'apollo-server-micro';
 
 export const typeDefs = gql`
+  scalar Date
+
   type Post {
     id: String!
     title: String!
-    date: String!
+    postDate: Date!
     views: Int!
     tags: [String]
     annotation: String!
