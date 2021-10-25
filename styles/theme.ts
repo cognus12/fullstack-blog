@@ -44,5 +44,8 @@ export const theme = {
     fullPost: {
       background: baseColors.black200,
     },
+    common: {
+      ...baseColors,
+    },
   },
 };

@@ -14,6 +14,7 @@ import { formatHashTagToHref, formatHashTagToView } from '../../../../helpers';
 import { ViewsCounter } from '../../../common/ViewsCounter/_ViewsCounter.component';
 import { HashTagUI } from '../../../../contracts/HashTagDTO';
 import { PostPreviewDTO } from '../../../../contracts/PostDTO';
+import { DateView } from '../../../common/DateView';
 
 export interface PostCardProps extends PostPreviewDTO {}
 
@@ -32,7 +33,7 @@ const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags
       <PostCardContent>
         <PostCardTitle>{title}</PostCardTitle>
         <PostCardInfo>
-          <span>{postDate}</span>
+          <DateView date={postDate} />
           <ViewsCounter views={views} />
         </PostCardInfo>
         {tags && <PostHashTags tags={normalizeHashTags(tags)} />}
