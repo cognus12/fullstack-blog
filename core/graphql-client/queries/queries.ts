@@ -4,7 +4,7 @@ const FRAGMENT_CORE_POST_FIELDS = gql`
   fragment CorePostFields on Post {
     id
     title
-    date
+    postDate
     views
     tags
   }

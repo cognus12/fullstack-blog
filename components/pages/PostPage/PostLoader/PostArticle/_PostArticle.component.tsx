@@ -6,12 +6,12 @@ import { ViewsCounter } from '../../../../common/ViewsCounter/_ViewsCounter.comp
 
 export interface PostArticleProps extends FullPostDTO {}
 
-export const PostArticle: React.FC<PostArticleProps> = ({ title, content, date, views }) => {
+export const PostArticle: React.FC<PostArticleProps> = ({ title, content, postDate, views }) => {
   return (
     <Article>
       <h1>{title}</h1>
       <ArticleInfo>
-        <span>{date}</span>
+        <span>{postDate}</span>
         <ViewsCounter views={views} />
       </ArticleInfo>
       <PostContent dangerouslySetInnerHTML={{ __html: content }} />
