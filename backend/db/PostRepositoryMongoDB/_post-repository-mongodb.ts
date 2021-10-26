@@ -29,6 +29,13 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
     const post = omit(postDocument, exclude) as T;
     post.id = postDocument._id.toHexString();
 
+    if (!post.postDate) {
+      // TODO rework types (or find another solution for adding post date)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      post.postDate = new Date(postDocument._id.getTimestamp());
+    }
+
     if (!post.tags) {
       post.tags = [];
     }
@@ -53,7 +60,7 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
 
     if (existingFilter && lastId) {
       const objectId = this._strToObjectId(lastId);
-      existingFilter._id = { $gt: objectId };
+      existingFilter._id = { $lt: objectId };
 
       return {
         filter: existingFilter,
@@ -90,7 +97,7 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
 
     const { filter, options } = this._configureGetAllQuery(args);
 
-    const cursor = db.collection('posts').find(filter, options);
+    const cursor = db.collection('posts').find(filter, options).sort({ _id: -1 });
 
     const total = await cursor.count();
 
