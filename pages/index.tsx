@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
-import { QUERY_ALL_POSTS } from '../core/graphql-client';
+import { QUERY_HOME_PAGE_DATA } from '../core/graphql-client';
 import { wrapWithSharedPageProps, SharedPageProps } from '../backend/enhancers';
 import { queryInitialApolloState } from '../core/graphql-client';
 
@@ -11,7 +11,7 @@ export interface HomePageOwnProps {}
 export interface HomePageProps extends SharedPageProps, HomePageOwnProps {}
 
 const getHomeServerSideProps: GetServerSideProps<HomePageOwnProps> = async () => {
-  const { initialApolloState } = await queryInitialApolloState({ query: QUERY_ALL_POSTS });
+  const { initialApolloState } = await queryInitialApolloState({ query: QUERY_HOME_PAGE_DATA });
 
   return {
     props: {

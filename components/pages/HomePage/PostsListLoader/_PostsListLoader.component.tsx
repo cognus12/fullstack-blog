@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { LoadMoreWrapper, PostsFeed } from './_PostsListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { QUERY_ALL_POSTS } from '../../../../core/graphql-client';
+import { QUERY_POSTS_LIST } from '../../../../core/graphql-client';
 import { PostPreviewDTO } from '../../../../contracts/PostDTO';
 import { useSlug } from '../../../../core/hooks';
 
@@ -15,7 +15,7 @@ export const PostsListLoader: React.FC = () => {
       postsList: { posts, lastId, hasMore, loadedCount },
     },
     fetchMore,
-  } = useQuery(QUERY_ALL_POSTS, { variables: { tag } });
+  } = useQuery(QUERY_POSTS_LIST, { variables: { tag } });
 
   return (
     <>
