@@ -1,6 +1,6 @@
 import { DocumentNode } from 'graphql';
 import { NormalizedCacheObject } from '@apollo/client';
-import { ApolloClientWrapper } from './initializeApollo';
+import { ApolloClientWrapper } from './ApolloClientWrapper';
 
 export type InitialQueryFunction = <D, V>(opts: {
   query: DocumentNode;

@@ -46,7 +46,7 @@ export const QUERY_ALL_TAGS = gql`
   }
 `;
 
-export const QUERY_POST_PAGE_DATE = gql`
+export const QUERY_POST_PAGE_DATA = gql`
   ${FRAGMENT_CORE_POST_FIELDS}
   ${FRAGMENT_ALL_TAGS}
   query ($slug: String) {

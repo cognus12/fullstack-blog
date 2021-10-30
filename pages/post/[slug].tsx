@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { queryInitialApolloState } from '../../core/graphql-client';
-import { QUERY_POST_PAGE_DATE } from '../../core/graphql-client';
+import { QUERY_POST_PAGE_DATA } from '../../core/graphql-client';
 
 import { FullPostDTO } from '../../contracts/PostDTO';
 
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps> = async ({ pa
   const { slug } = params;
 
   const { data, initialApolloState } = await queryInitialApolloState<FullPostData, FullPostQueryVars>({
-    query: QUERY_POST_PAGE_DATE,
+    query: QUERY_POST_PAGE_DATA,
     variables: { slug },
   });
 
