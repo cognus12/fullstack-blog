@@ -1,29 +1,23 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { LoadMoreWrapper, PostsFeed } from './_PostsListLoader.styles';
+import { LoadMoreWrapper, PostListWrapper } from './_PostListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { QUERY_POSTS_LIST } from '../../../../core/graphql-client';
 import { PostPreviewDTO } from '../../../../contracts/PostDTO';
 import { useSlug } from '../../../../core/hooks';
+import { useQueryPostList } from '../../../../core/graphql-client';
 
 export const PostsListLoader: React.FC = () => {
   const tag = useSlug();
 
-  const {
-    data: {
-      postsList: { posts, lastId, hasMore, loadedCount },
-    },
-    fetchMore,
-  } = useQuery(QUERY_POSTS_LIST, { variables: { tag } });
+  const { posts, lastId, hasMore, loadedCount, fetchMore } = useQueryPostList({ tag });
 
   return (
     <>
-      <PostsFeed>
+      <PostListWrapper>
         {posts.map((post: PostPreviewDTO) => (
           <PostCard key={post.id} {...post} />
         ))}
-      </PostsFeed>
+      </PostListWrapper>
       {hasMore && (
         <LoadMoreWrapper>
           <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })} />

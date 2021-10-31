@@ -15,7 +15,7 @@ export interface GetOnePostArgs {
 export const resolvers = {
   Date: dateScalar,
   Query: {
-    postsList: async (parent: unknown, args: PostsListArgs, context: GraphQLSeverContext) => {
+    postList: async (parent: unknown, args: PostsListArgs, context: GraphQLSeverContext) => {
       const { lastId, loadedCount, tag } = args;
       const { postService } = context;
 

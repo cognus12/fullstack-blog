@@ -28,7 +28,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    postsList(loadedCount: Int, lastId: String, tag: String): PostsData!
+    postList(loadedCount: Int, lastId: String, tag: String): PostsData!
     post(slug: String): Post
     allTags: [HashTag]!
   }

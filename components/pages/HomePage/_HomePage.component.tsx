@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { PageSection } from '../../../styles/containers';
-import { PostsListLoader } from './PostsListLoader';
+import { PostsListLoader } from './PostListLoader';
 
 export const HomePage: React.FC = () => (
   <>

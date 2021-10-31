@@ -19,8 +19,10 @@ export const FRAGMENT_POST_PREVIEW_FIELDS = gql`
 `;
 
 export const FRAGMENT_ALL_TAGS = gql`
-  fragment AllTags on HashTag {
-    tag
-    count
+  fragment AllTags on Query {
+    allTags {
+      tag
+      count
+    }
   }
 `;
