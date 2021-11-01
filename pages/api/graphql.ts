@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { graphQLServer } from '../../backend/graphql-server';
+import { graphqlServer } from '../../backend/GraphQLSever';
 
 export const config = {
   api: {
@@ -8,6 +8,6 @@ export const config = {
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const handler = await graphQLServer.createHandler();
+  const handler = await graphqlServer.createHandler();
   return handler(req, res);
 };

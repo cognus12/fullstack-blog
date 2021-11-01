@@ -1,9 +1,8 @@
 import React from 'react';
 import { HashTags } from '../../../../common/HashTags';
-import { useQuery } from '@apollo/client';
-import { QUERY_ALL_TAGS } from '../../../../../core/graphql-client';
 import { formatHashTagToHref, formatHashTagToView } from '../../../../../helpers';
 import { HashTagDTO, HashTagUI } from '../../../../../contracts/HashTagDTO';
+import { useQueryAllTags } from '../../../../../core/graphql-client';
 
 const normalizeHashTags = (tags: HashTagDTO[]): HashTagUI[] =>
   tags.map(({ tag, count }) => ({
@@ -12,7 +11,7 @@ const normalizeHashTags = (tags: HashTagDTO[]): HashTagUI[] =>
   }));
 
 export const SideBarTags: React.FC = () => {
-  const { data, error } = useQuery(QUERY_ALL_TAGS);
+  const { data, error } = useQueryAllTags();
 
   if (error || !data) {
     return null;

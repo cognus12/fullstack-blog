@@ -1,7 +1,7 @@
 import { GetAllMethod, GetAllTagsMethod, GetOneMethod, PostRepositoryBase } from '../../db/PostRepositoryBase';
 import { postRepository } from '../../db';
 
-class PostService extends PostRepositoryBase {
+export class PostService extends PostRepositoryBase {
   private _repository: PostRepositoryBase;
 
   constructor(repository: PostRepositoryBase) {

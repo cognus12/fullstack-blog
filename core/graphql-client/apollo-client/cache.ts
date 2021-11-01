@@ -4,7 +4,7 @@ export const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        postsList: {
+        postList: {
           keyArgs: () => 'Post',
           merge(existing = { posts: [], lastId: null, loadedCount: 0 }, incoming) {
             return {

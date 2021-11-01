@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexContainer } from '../../../../styles/containers';
 
-export const PostsFeed = styled(FlexContainer)`
+export const PostListWrapper = styled(FlexContainer)`
   flex-direction: column;
   row-gap: 20px;
 `;
