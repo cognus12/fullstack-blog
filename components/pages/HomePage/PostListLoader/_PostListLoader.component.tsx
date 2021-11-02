@@ -6,7 +6,7 @@ import { PostPreviewDTO } from '../../../../contracts/PostDTO';
 import { useSlug } from '../../../../core/hooks';
 import { useQueryPostList } from '../../../../core/graphql-client';
 
-export const PostsListLoader: React.FC = () => {
+export const PostListLoader: React.FC = () => {
   const tag = useSlug();
 
   const { posts, lastId, hasMore, loadedCount, fetchMore } = useQueryPostList({ tag });
