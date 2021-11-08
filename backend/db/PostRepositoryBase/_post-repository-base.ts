@@ -9,11 +9,13 @@ export interface GetAllArgs {
 export type GetAllMethod = (loadedCount: number, args?: GetAllArgs) => Promise<PostsDataDTO>;
 export type GetOneMethod = (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
 export type GetAllTagsMethod = () => Promise<HashTagDTO[]>;
+export type IncrementViewsMethod = (id: string) => Promise<FullPostDTO>;
 
 export interface PostRepository {
   getAll: GetAllMethod;
   getOne: GetOneMethod;
   getAllTags: GetAllTagsMethod;
+  incrementViews: IncrementViewsMethod;
 }
 
 export abstract class PostRepositoryBase implements PostRepository {
@@ -22,4 +24,6 @@ export abstract class PostRepositoryBase implements PostRepository {
   abstract getOne: GetOneMethod;
 
   abstract getAllTags: GetAllTagsMethod;
+
+  abstract incrementViews: IncrementViewsMethod;
 }

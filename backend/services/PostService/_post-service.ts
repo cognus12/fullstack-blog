@@ -1,4 +1,10 @@
-import { GetAllMethod, GetAllTagsMethod, GetOneMethod, PostRepositoryBase } from '../../db/PostRepositoryBase';
+import {
+  GetAllMethod,
+  GetAllTagsMethod,
+  GetOneMethod,
+  IncrementViewsMethod,
+  PostRepositoryBase,
+} from '../../db/PostRepositoryBase';
 import { postRepository } from '../../db';
 
 export class PostService extends PostRepositoryBase {
@@ -19,6 +25,10 @@ export class PostService extends PostRepositoryBase {
 
   public getAllTags: GetAllTagsMethod = async () => {
     return await this._repository.getAllTags();
+  };
+
+  public incrementViews: IncrementViewsMethod = async (id) => {
+    return await this._repository.incrementViews(id);
   };
 }
 

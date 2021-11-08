@@ -1,4 +1,4 @@
-import { GetAllArgs, PostRepositoryBase } from '../PostRepositoryBase';
+import { GetAllArgs, IncrementViewsMethod, PostRepositoryBase } from '../PostRepositoryBase';
 import { connectToDb } from './utils/connectToDb';
 import { omit, takeLast } from '../../../utils';
 import { POSTS_PAGE_SIZE } from '../../../config/constants';
@@ -157,5 +157,13 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
     await cursor.close();
 
     return tags as HashTagDTO[];
+  };
+
+  public incrementViews: IncrementViewsMethod = async (id) => {
+    const { db } = await this._connect();
+
+    const { value: post } = await db.collection('posts').findOneAndUpdate({ _id: id }, { $inc: { views: 1 } });
+
+    return post as FullPostDTO;
   };
 }
