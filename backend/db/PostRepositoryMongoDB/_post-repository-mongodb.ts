@@ -162,7 +162,9 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
   public incrementViews: IncrementViewsMethod = async (id) => {
     const { db } = await this._connect();
 
-    const { value: post } = await db.collection('posts').findOneAndUpdate({ _id: id }, { $inc: { views: 1 } });
+    const { value: post } = await db
+      .collection('posts')
+      .findOneAndUpdate({ _id: this._strToObjectId(id) }, { $inc: { views: 1 } }, { returnDocument: 'after' });
 
     return post as FullPostDTO;
   };

@@ -7,6 +7,8 @@ export * from './gql/queries/post-list';
 export * from './gql/queries/post-page-data';
 export * from './gql/queries/full-post';
 
+export * from './gql/mutations/inc-post-views';
+
 export * from './gql/hooks/useQueryAllTags';
 export * from './gql/hooks/useQueryFullPost';
 export * from './gql/hooks/useQueryPostList';
