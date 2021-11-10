@@ -12,6 +12,10 @@ export interface GetOnePostArgs {
   slug: string;
 }
 
+export interface IncrementViewsArgs {
+  id: string;
+}
+
 export const resolvers = {
   Date: dateScalar,
   Query: {
@@ -31,6 +35,14 @@ export const resolvers = {
       const { postService } = context;
 
       return await postService.getAllTags();
+    },
+  },
+  Mutation: {
+    incPostViews: async (parent: unknown, args: IncrementViewsArgs, context: GraphQLSeverContext) => {
+      const { postService } = context;
+      const { id } = args;
+
+      return await postService.incrementViews(id);
     },
   },
 };

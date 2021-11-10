@@ -32,4 +32,8 @@ export const typeDefs = gql`
     post(slug: String): Post
     allTags: [HashTag]!
   }
+
+  type Mutation {
+    incPostViews(id: String): Post!
+  }
 `;

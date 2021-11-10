@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { PageSection } from '../../../styles/containers';
-import { PostsListLoader } from './PostListLoader';
+import { PostListLoader } from './PostListLoader';
 
 export const HomePage: React.FC = () => (
   <>
@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => (
       <title>Create Next App</title>
     </Head>
     <PageSection>
-      <PostsListLoader />
+      <PostListLoader />
     </PageSection>
   </>
 );
