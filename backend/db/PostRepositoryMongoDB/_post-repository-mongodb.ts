@@ -40,6 +40,10 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
       post.tags = [];
     }
 
+    if (post.content) {
+      post.content = this._normalizePostContent(post.content);
+    }
+
     return post;
   };
 
@@ -54,6 +58,19 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
   };
 
   private _strToObjectId = (stringId: string) => new ObjectId(stringId);
+
+  // TODO move to admin panel
+  private _normalizePostContent = (text?: string): string => {
+    if (!text) {
+      return 'No content';
+    }
+
+    if (text.includes('<script')) {
+      return text.replaceAll('</script>', '&lt;/script&gt;').replaceAll('<script', '&lt;script');
+    }
+
+    return text;
+  };
 
   private _configureGetAllQuery = (args: GetAllArgs = {}, existingFilter?: Filter<Document>): FindAllQueryOptions => {
     const { lastId, tag } = args;
