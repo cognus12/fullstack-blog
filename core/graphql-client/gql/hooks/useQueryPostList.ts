@@ -10,14 +10,20 @@ export const useQueryPostList = ({ tag }: UseQueryPostListVars) => {
     data: {
       postList: { posts, lastId, hasMore, loadedCount },
     },
+    error,
+    loading,
     fetchMore,
-  } = useQuery(QUERY_POST_LIST, { variables: { tag } });
+  } = useQuery(QUERY_POST_LIST, { variables: { tag }, notifyOnNetworkStatusChange: true });
 
   return {
-    posts,
-    lastId,
-    hasMore,
-    loadedCount,
+    data: {
+      posts,
+      lastId,
+      hasMore,
+      loadedCount,
+    },
+    error: error?.message,
+    loading,
     fetchMore,
   };
 };

@@ -9,7 +9,12 @@ import { useQueryPostList } from '../../../../core/graphql-client';
 export const PostListLoader: React.FC = () => {
   const tag = useSlug();
 
-  const { posts, lastId, hasMore, loadedCount, fetchMore } = useQueryPostList({ tag });
+  const {
+    data: { posts, lastId, hasMore, loadedCount },
+    loading,
+    error,
+    fetchMore,
+  } = useQueryPostList({ tag });
 
   return (
     <>
@@ -20,7 +25,11 @@ export const PostListLoader: React.FC = () => {
       </PostListWrapper>
       {hasMore && (
         <LoadMoreWrapper>
-          <LoadMore fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })} />
+          <LoadMore
+            fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })}
+            loading={loading}
+            error={error}
+          />
         </LoadMoreWrapper>
       )}
     </>
