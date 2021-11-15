@@ -1,5 +1,7 @@
 import React from 'react';
 import { LoadMoreButton } from './_LoadMore.style';
+import { Spinner } from './Spinner';
+import { baseColors } from '../../../../../styles/theme';
 
 export interface LoadMoreProps {
   fetcher: () => void;
@@ -10,11 +12,11 @@ export interface LoadMoreProps {
 export const LoadMore: React.FC<LoadMoreProps> = ({ fetcher, loading, error }) => {
   const isError = Boolean(error);
 
-  const loader = <>...</>;
+  const Loader = () => <Spinner color={baseColors.green100} />;
 
   return (
     <LoadMoreButton onClick={fetcher} isError={isError}>
-      {loading ? loader : 'Load more'}
+      {loading ? <Loader /> : 'Load more'}
     </LoadMoreButton>
   );
 };

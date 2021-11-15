@@ -10,4 +10,5 @@ export const LoadMoreButton = styled.button<LoadMoreButtonProps>`
   padding: 10px;
   border-radius: 6px;
   color: ${({ theme }) => theme.colors.common.black100};
+  height: 42px;
 `;
