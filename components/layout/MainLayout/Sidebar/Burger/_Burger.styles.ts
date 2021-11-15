@@ -9,6 +9,16 @@ export const BurgerButton = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;
+  transform: translateZ(0);
+
+  div {
+    height: 4px;
+    background-color: ${({ theme }) => theme.colors.common.black100};
+
+    &:nth-child(2) {
+      margin: 4px 0;
+    }
+  }
 
   @media screen and ${device.laptop} {
     display: none;

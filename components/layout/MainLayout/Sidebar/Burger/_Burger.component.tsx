@@ -8,7 +8,11 @@ export interface BurgerProps {
 export const Burger: React.FC<BurgerProps> = ({ onClick }) => {
   return (
     <div>
-      <BurgerButton onClick={onClick} />
+      <BurgerButton onClick={onClick}>
+        <div />
+        <div />
+        <div />
+      </BurgerButton>
     </div>
   );
 };
