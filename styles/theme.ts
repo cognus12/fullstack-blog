@@ -1,4 +1,4 @@
-const baseColors = {
+export const baseColors = {
   gray100: '#708090',
   gray200: '#33363b',
   gray300: '#303846',
