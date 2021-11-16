@@ -6,11 +6,10 @@ export * from './gql/queries/home-page-data';
 export * from './gql/queries/post-list';
 export * from './gql/queries/post-page-data';
 export * from './gql/queries/full-post';
-export * from './gql/queries/post-id';
 
 export * from './gql/mutations/inc-post-views';
 
 export * from './gql/hooks/useQueryAllTags';
 export * from './gql/hooks/useQueryFullPost';
 export * from './gql/hooks/useQueryPostList';
-export * from './gql/hooks/useQueryPostId';
+export * from './gql/hooks/useQueryPostPartials';
