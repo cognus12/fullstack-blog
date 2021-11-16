@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSlug } from '../../../../../../../core/hooks';
 import { useMutationIncPostViews } from '../../../../../../../core/graphql-client/gql/hooks/useMutationIncPostViews';
-import { useQueryPostId } from '../../../../../../../core/graphql-client';
+import { useQueryPostPartials } from '../../../../../../../core/graphql-client';
 
 export const usePostViewsCounter = (): void => {
   const slug = useSlug();
   const { incViews } = useMutationIncPostViews();
-  const id = useQueryPostId({ slug });
+  const { id } = useQueryPostPartials({ slug, fields: ['id'] });
 
   React.useEffect(() => {
     incViews({ variables: { id } });
