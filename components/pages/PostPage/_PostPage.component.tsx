@@ -1,15 +1,9 @@
-import Head from 'next/head';
-import { PageSection } from '../../../styles/containers';
-import { PostLoader } from './PostLoader';
 import React from 'react';
+import { PostLoader } from './PostLoader';
+import { PageInner } from '../../layout/PageInner';
 
 export const PostPage: React.FC = () => (
-  <>
-    <Head>
-      <title>Blog post</title>
-    </Head>
-    <PageSection>
-      <PostLoader />
-    </PageSection>
-  </>
+  <PageInner title="Blog post">
+    <PostLoader />
+  </PageInner>
 );
