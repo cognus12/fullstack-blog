@@ -6,7 +6,6 @@ export interface FullPostDTO {
   postDate: string;
   slug: string;
   views: number;
-  cover?: string;
   tags?: string[];
 }
 

@@ -1,14 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import {
-  PostCardContent,
-  PostCardTitle,
-  PostCoverWrapper,
-  PostRoot,
-  PostHashTags,
-  ReadMoreLink,
-  PostCardInfo,
-} from './_PostCard.styles';
+import { PostCardContent, PostCardTitle, PostRoot, PostHashTags, ReadMoreLink, PostCardInfo } from './_PostCard.styles';
 
 import { formatHashTagToHref, formatHashTagToView } from '../../../../helpers';
 import { PostViews } from '../../../common/PostViews/_PostViews.component';
@@ -24,12 +16,9 @@ const normalizeHashTags = (tags: string[]): HashTagUI[] =>
     href: `/tags/${formatHashTagToHref(tag)}`,
   }));
 
-const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, cover, tags, slug, postDate, views = 0 }) => {
+const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, tags, slug, postDate, views = 0 }) => {
   return (
     <PostRoot as="article">
-      <PostCoverWrapper>
-        <img src={`/${cover}`} alt="Post cover" />
-      </PostCoverWrapper>
       <PostCardContent>
         <PostCardTitle>{title}</PostCardTitle>
         <PostCardInfo>
