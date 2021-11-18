@@ -23,18 +23,30 @@ export const resolvers = {
       const { lastId, loadedCount, tag } = args;
       const { postService } = context;
 
-      return await postService.getAll(loadedCount, { lastId, tag });
+      try {
+        return await postService.getAll(loadedCount, { lastId, tag });
+      } catch (err) {
+        return { posts: [], loadedCount: 0 };
+      }
     },
     post: async (parent: unknown, args: GetOnePostArgs, context: GraphQLSeverContext) => {
       const { slug } = args;
       const { postService } = context;
 
-      return await postService.getOne(slug as string);
+      try {
+        return await postService.getOne(slug as string);
+      } catch (err) {
+        return null;
+      }
     },
     allTags: async (parent: unknown, args: unknown, context: GraphQLSeverContext) => {
       const { postService } = context;
 
-      return await postService.getAllTags();
+      try {
+        return await postService.getAllTags();
+      } catch (err) {
+        return [];
+      }
     },
   },
   Mutation: {
