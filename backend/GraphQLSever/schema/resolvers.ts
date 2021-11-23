@@ -26,6 +26,7 @@ export const resolvers = {
       try {
         return await postService.getAll(loadedCount, { lastId, tag });
       } catch (err) {
+        console.error(err.message);
         return { posts: [], loadedCount: 0 };
       }
     },
@@ -36,6 +37,7 @@ export const resolvers = {
       try {
         return await postService.getOne(slug as string);
       } catch (err) {
+        console.error(err.message);
         return null;
       }
     },
@@ -45,6 +47,7 @@ export const resolvers = {
       try {
         return await postService.getAllTags();
       } catch (err) {
+        console.error(err.message);
         return [];
       }
     },
@@ -54,7 +57,11 @@ export const resolvers = {
       const { postService } = context;
       const { id } = args;
 
-      return await postService.incrementViews(id);
+      try {
+        return await postService.incrementViews(id);
+      } catch (err) {
+        console.error(err.message);
+      }
     },
   },
 };
