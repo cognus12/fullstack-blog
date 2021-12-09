@@ -2,7 +2,7 @@ import React from 'react';
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import { SharedPageProps, wrapWithSharedPageProps } from '../../backend/enhancers';
 import { QUERY_HOME_PAGE_DATA, queryInitialApolloState } from '../../core/graphql-client';
-import { HomePage } from '../../components/pages/HomePage';
+import { HomePage } from '../../components/screens/HomePage';
 
 export interface HomePageOwnProps {}
 

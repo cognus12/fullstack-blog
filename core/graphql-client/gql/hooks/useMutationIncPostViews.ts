@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { INC_POST_VIEWS } from '../mutations/inc-post-views';
 import { QUERY_FULL_POST } from '../queries/full-post';
-import { FullPostDTO } from '../../../../contracts/PostDTO';
+import { FullPostDTO } from '../../../../common/contracts/PostDTO';
 
 interface FullPostData {
   post: FullPostDTO;
