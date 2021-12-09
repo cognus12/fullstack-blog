@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-micro';
-import { GRAPHQL_PATH } from '../../config/constants';
+import { getConfig } from '../../common/config/config.service';
 import { schema } from './schema/schema';
 import { postService, PostService } from '../services/PostService';
 import { GraphQLSeverContext, Handler } from './schema/interfaces';
 
-class GraphQLSever {
+export class GraphQLSever {
   private readonly _postService: PostService;
 
   constructor(context: GraphQLSeverContext) {
@@ -19,7 +19,14 @@ class GraphQLSever {
       }),
     });
     await server.start();
-    return server.createHandler({ path: GRAPHQL_PATH });
+
+    const path = getConfig('GRAPHQL_PATH');
+
+    if (!path) {
+      throw new Error('[GraphQLServer]: NEXT_PUBLIC_GRAPHQL_PATH is not specified in .env.local');
+    }
+
+    return server.createHandler({ path });
   };
 }
 

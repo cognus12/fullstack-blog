@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Tag } from './_HashTag.style';
-import { HashTagUI } from '../../../../contracts/HashTagDTO';
+import { HashTagUI } from '../../../../common/contracts/HashTagDTO';
 
 export interface HashTagProps extends HashTagUI {}
 

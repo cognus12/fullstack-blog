@@ -1,4 +1,4 @@
-import { FullPostDTO } from '../../../contracts/PostDTO';
+import { FullPostDTO } from '../../../common/contracts/PostDTO';
 import { dateScalar } from './scalars/dateScalar';
 import { GraphQLSeverContext } from './interfaces';
 

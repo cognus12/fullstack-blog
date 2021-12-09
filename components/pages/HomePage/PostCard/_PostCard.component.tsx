@@ -2,10 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { PostCardContent, PostCardTitle, PostRoot, PostHashTags, ReadMoreLink, PostCardInfo } from './_PostCard.styles';
 
-import { formatHashTagToHref, formatHashTagToView } from '../../../../helpers';
+import { formatHashTagToHref, formatHashTagToView } from '../../../../common/helpers';
 import { PostViews } from '../../../common/PostViews/_PostViews.component';
-import { HashTagUI } from '../../../../contracts/HashTagDTO';
-import { PostPreviewDTO } from '../../../../contracts/PostDTO';
+import { HashTagUI } from '../../../../common/contracts/HashTagDTO';
+import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
 import { DateView } from '../../../common/DateView';
 
 export interface PostCardProps extends PostPreviewDTO {}

@@ -1,5 +1,5 @@
-import { FullPostDTO, PostsDataDTO } from '../../../contracts/PostDTO';
-import { HashTagDTO } from '../../../contracts/HashTagDTO';
+import { FullPostDTO, PostsDataDTO } from '../../../common/contracts/PostDTO';
+import { HashTagDTO } from '../../../common/contracts/HashTagDTO';
 
 export interface GetAllArgs {
   lastId?: FullPostDTO['id'];

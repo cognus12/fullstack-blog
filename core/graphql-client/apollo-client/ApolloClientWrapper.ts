@@ -1,13 +1,24 @@
 import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client';
 import { cache } from './cache';
 
-import { isServer } from '../../../helpers';
-import { BASE_URL, ENABLE_APOLLO_DEVTOOLS, GRAPHQL_PATH } from '../../../config/constants';
+import { isServer } from '../../../common/helpers';
+import { getConfig } from '../../../common/config/config.service';
 
 export abstract class ApolloClientWrapper {
   private static _apolloClient: ApolloClient<NormalizedCacheObject>;
 
   private static _createLink = () => {
+    const BASE_URL = getConfig('BASE_URL');
+    const GRAPHQL_PATH = getConfig('GRAPHQL_PATH');
+
+    if (!BASE_URL) {
+      throw new Error('[ApolloClient]: NEXT_PUBLIC_BASE_URL is not specified in .local.env');
+    }
+
+    if (!GRAPHQL_PATH) {
+      throw new Error('[ApolloClient]: NEXT_PUBLIC_GRAPHQL_PATH is not specified in .local.env');
+    }
+
     return new HttpLink({
       uri: isServer() ? `${BASE_URL}${GRAPHQL_PATH}` : GRAPHQL_PATH,
       credentials: 'same-origin',
@@ -19,7 +30,7 @@ export abstract class ApolloClientWrapper {
       ssrMode: isServer(),
       link: ApolloClientWrapper._createLink(),
       cache: cache,
-      connectToDevTools: ENABLE_APOLLO_DEVTOOLS,
+      connectToDevTools: getConfig('MODE') !== 'production',
     });
   };
 

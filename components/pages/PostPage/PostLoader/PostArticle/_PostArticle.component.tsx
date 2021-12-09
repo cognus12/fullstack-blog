@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Article, ArticleInfo, PostContent } from './_PostArticle.styles';
-import { FullPostDTO } from '../../../../../contracts/PostDTO';
+import { FullPostDTO } from '../../../../../common/contracts/PostDTO';
 import { DateView } from '../../../../common/DateView';
 import { ViewsCounter } from './ViewsCounter';
 

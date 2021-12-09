@@ -2,7 +2,7 @@ import React from 'react';
 import { LoadMoreWrapper, PostListWrapper } from './_PostListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
-import { PostPreviewDTO } from '../../../../contracts/PostDTO';
+import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
 import { useSlug } from '../../../../core/hooks';
 import { useQueryPostList } from '../../../../core/graphql-client';
 

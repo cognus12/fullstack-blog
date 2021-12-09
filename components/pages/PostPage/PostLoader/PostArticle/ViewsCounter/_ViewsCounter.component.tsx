@@ -1,5 +1,5 @@
 import React from 'react';
-import { FullPostDTO } from '../../../../../../contracts/PostDTO';
+import { FullPostDTO } from '../../../../../../common/contracts/PostDTO';
 import { PostViews } from '../../../../../common/PostViews/_PostViews.component';
 import { usePostViewsCounter } from './hooks/usePostViewsCounter';
 

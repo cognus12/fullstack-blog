@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashTag } from './HashTag';
 import { HashTagsWrapper } from './_HashTags.styles';
-import { HashTagUI } from '../../../contracts/HashTagDTO';
+import { HashTagUI } from '../../../common/contracts/HashTagDTO';
 
 export interface HashTagsProps {
   tags: HashTagUI[];

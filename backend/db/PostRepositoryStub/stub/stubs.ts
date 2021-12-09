@@ -1,5 +1,5 @@
-import { HashTagDTO } from '../../../../contracts/HashTagDTO';
-import { FullPostDTO, PostsList } from '../../../../contracts/PostDTO';
+import { HashTagDTO } from '../../../../common/contracts/HashTagDTO';
+import { FullPostDTO, PostsList } from '../../../../common/contracts/PostDTO';
 
 const fakePosts: FullPostDTO[] = [
   {

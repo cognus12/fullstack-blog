@@ -1,10 +1,10 @@
 import { GetAllArgs, IncrementViewsMethod, PostRepositoryBase } from '../PostRepositoryBase';
 import { connectToDb } from './utils/connectToDb';
-import { omit, takeLast } from '../../../utils';
-import { POSTS_PAGE_SIZE } from '../../../config/constants';
+import { omit, takeLast } from '../../../common/utils';
+import { getConfig } from '../../../common/config/config.service';
 import { Db, Filter, FindOptions, MongoClient, ObjectId } from 'mongodb';
-import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../../contracts/PostDTO';
-import { HashTagDTO } from '../../../contracts/HashTagDTO';
+import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../../common/contracts/PostDTO';
+import { HashTagDTO } from '../../../common/contracts/HashTagDTO';
 
 export type DbInstance = {
   client: MongoClient;
@@ -122,7 +122,7 @@ export class PostRepositoryMongodb extends PostRepositoryBase {
 
     cursor.filter(filterWithLastId);
 
-    cursor.limit(POSTS_PAGE_SIZE);
+    cursor.limit(Number(getConfig('POSTS_PAGE_SIZE')));
 
     const count = await cursor.count();
 
