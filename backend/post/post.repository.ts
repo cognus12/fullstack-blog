@@ -1,5 +1,4 @@
 import { Filter, FindOptions, ObjectId } from 'mongodb';
-import { GetAllArgs, IncrementViewsMethod } from '../db/PostRepositoryBase';
 import { connectToDb, DbInstance } from '../db/mongodb.service';
 import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { omit, takeLast } from '../../common/utils';
@@ -15,7 +14,24 @@ interface FindAllQueryOptions {
   options?: FindOptions;
 }
 
-export class PostRepository {
+export interface GetAllArgs {
+  lastId?: FullPostDTO['id'];
+  tag?: string;
+}
+
+type FindOneMethod = (slug: string) => Promise<FullPostDTO | null>;
+type FindMethod = (loadedCount: number, args: GetAllArgs) => Promise<PostsDataDTO>;
+type GetAllTagsMethod = () => Promise<HashTagDTO[]>;
+type IncrementViewsMethod = (id: string) => Promise<FullPostDTO>;
+
+export interface IPostRepository {
+  findOne: FindOneMethod;
+  find: FindMethod;
+  getAllTags: GetAllTagsMethod;
+  incrementViews: IncrementViewsMethod;
+}
+
+export class PostRepository implements IPostRepository {
   private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
   };
@@ -92,19 +108,20 @@ export class PostRepository {
     };
   };
 
-  public getOne = async (slug: string): Promise<FullPostDTO | undefined> => {
+  public findOne: FindOneMethod = async (slug) => {
     const { db } = await this._connect();
 
     const post = await db.collection('posts').findOne({ slug: slug });
 
     if (!post) {
-      return undefined;
+      return null;
     }
 
     return this._normalizePost<FullPostDTO>(post, ['_id']);
   };
 
-  public getAll = async (loadedCount = 0, args: GetAllArgs = {}): Promise<PostsDataDTO> => {
+  // TODO move parts of logic to PostService
+  public find: FindMethod = async (loadedCount = 0, args: GetAllArgs = {}): Promise<PostsDataDTO> => {
     const { db } = await this._connect();
 
     const { filter, options } = this._configureGetAllQuery(args);
@@ -153,6 +170,7 @@ export class PostRepository {
     return result;
   };
 
+  // TODO extract to separate Tag module
   public getAllTags = async (): Promise<HashTagDTO[]> => {
     const { db } = await this._connect();
 

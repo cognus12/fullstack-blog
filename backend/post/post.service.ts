@@ -1,5 +1,6 @@
 import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { HashTagDTO } from '../../common/contracts/HashTagDTO';
+import { IPostRepository } from './post.repository';
 
 export interface GetAllArgs {
   lastId?: FullPostDTO['id'];
@@ -7,30 +8,30 @@ export interface GetAllArgs {
 }
 
 export type GetPostsMethod = (loadedCount: number, args?: GetAllArgs) => Promise<PostsDataDTO>;
-export type GetOnePostMethod = (slug: FullPostDTO['slug']) => Promise<FullPostDTO | undefined>;
+export type GetOnePostMethod = (slug: FullPostDTO['slug']) => Promise<FullPostDTO | null>;
 export type GetTagsMethod = () => Promise<HashTagDTO[]>;
 export type IncrementPostViewsMethod = (id: string) => Promise<FullPostDTO>;
 
-export interface PostRepository {
+export interface IPostService {
   getPosts: GetPostsMethod;
   getOnePost: GetOnePostMethod;
   getTags: GetTagsMethod;
   incrementPostViews: IncrementPostViewsMethod;
 }
 
-export class PostService {
-  private _repository: any;
+export class PostService implements IPostService {
+  private _repository: IPostRepository;
 
   constructor(repository: any) {
     this._repository = repository;
   }
 
   public getPosts: GetPostsMethod = async (loadedCount = 0, args = {}) => {
-    return await this._repository.getAll(loadedCount, args);
+    return await this._repository.find(loadedCount, args);
   };
 
   public getOnePost: GetOnePostMethod = async (slug) => {
-    return await this._repository.getOne(slug);
+    return await this._repository.findOne(slug);
   };
 
   public getTags: GetTagsMethod = async () => {

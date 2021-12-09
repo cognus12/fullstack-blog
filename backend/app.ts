@@ -1,21 +1,24 @@
 import { ApolloServer } from 'apollo-server-micro';
-import { getConfig } from '../../common/config/config.service';
+import { getConfig } from '../common/config/config.service';
 import { schema } from './schema/schema';
-import { postService, PostService } from '../services/PostService';
-import { GraphQLSeverContext, Handler } from './schema/interfaces';
+import { MicroRequest } from 'apollo-server-micro/dist/types';
+import { ServerResponse } from 'http';
+import { IDataLoader } from './data.loader';
 
-export class GraphQLSever {
-  private readonly _postService: PostService;
+export type Handler = (req: MicroRequest, res: ServerResponse) => Promise<void>;
 
-  constructor(context: GraphQLSeverContext) {
-    this._postService = context.postService;
+export class App {
+  private readonly dataLoader: IDataLoader;
+
+  constructor(dataLoader: IDataLoader) {
+    this.dataLoader = dataLoader;
   }
 
   public createHandler = async (): Promise<Handler> => {
     const server = new ApolloServer({
       schema: schema,
       context: () => ({
-        postService: this._postService,
+        dataLoader: this.dataLoader,
       }),
     });
     await server.start();
@@ -29,5 +32,3 @@ export class GraphQLSever {
     return server.createHandler({ path });
   };
 }
-
-export const graphqlServer = new GraphQLSever({ postService });
