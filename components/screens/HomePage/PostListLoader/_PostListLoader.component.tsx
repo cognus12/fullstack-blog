@@ -3,7 +3,7 @@ import { LoadMoreWrapper, PostListWrapper } from './_PostListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
-import { useSlug } from '../../../../core/hooks';
+import { useSlug } from '../../../../hooks';
 import { useQueryPostList } from '../../../../core/graphql-client';
 
 export const PostListLoader: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PostLoader } from './PostLoader';
 import { PageInner } from '../../layout/PageInner';
-import { useSlug } from '../../../core/hooks';
+import { useSlug } from '../../../hooks';
 import { useQueryPostPartials } from '../../../core/graphql-client';
 
 export const PostPage: React.FC = () => {

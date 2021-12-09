@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSlug } from '../../../../../../../core/hooks';
+import { useSlug } from '../../../../../../../hooks';
 import { useMutationIncPostViews } from '../../../../../../../core/graphql-client/gql/hooks/useMutationIncPostViews';
 import { useQueryPostPartials } from '../../../../../../../core/graphql-client';
 

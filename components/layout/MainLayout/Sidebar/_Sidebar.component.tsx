@@ -2,7 +2,7 @@ import React from 'react';
 import { Aside } from './_Sidebar.styles';
 import { SideBarTags } from './SideBarTags';
 import { Burger } from './Burger';
-import { useClickOutSide } from '../../../../core/hooks';
+import { useClickOutSide } from '../../../../hooks';
 
 export interface SidebarProps {}
 
