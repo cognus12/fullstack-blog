@@ -1,10 +1,10 @@
-import { GetAllArgs, IncrementViewsMethod, PostRepositoryBase } from '../PostRepositoryBase';
-import { connectToDb, DbInstance } from '../mongodb.service';
-import { omit, takeLast } from '../../../common/utils';
-import { getConfig } from '../../../common/config/config.service';
 import { Filter, FindOptions, ObjectId } from 'mongodb';
-import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../../common/contracts/PostDTO';
-import { HashTagDTO } from '../../../common/contracts/HashTagDTO';
+import { GetAllArgs, IncrementViewsMethod } from '../db/PostRepositoryBase';
+import { connectToDb, DbInstance } from '../db/mongodb.service';
+import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
+import { omit, takeLast } from '../../common/utils';
+import { getConfig } from '../../common/config/config.service';
+import { HashTagDTO } from '../../common/contracts/HashTagDTO';
 
 interface Document {
   [key: string]: any;
@@ -15,7 +15,7 @@ interface FindAllQueryOptions {
   options?: FindOptions;
 }
 
-export class PostRepositoryMongodb extends PostRepositoryBase {
+export class PostRepository {
   private _connect = async (): Promise<DbInstance> => {
     return await connectToDb();
   };

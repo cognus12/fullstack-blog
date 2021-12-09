@@ -1,5 +1,9 @@
 import { Db, MongoClient } from 'mongodb';
-import { DbInstance } from '../_post-repository-mongodb';
+
+export type DbInstance = {
+  client: MongoClient;
+  db: Db;
+};
 
 const uri = process.env.DB_URI;
 const dbName = process.env.DB_NAME;
