@@ -4,7 +4,7 @@ import { QUERY_HOME_PAGE_DATA } from '../core/graphql-client';
 import { wrapWithSharedPageProps, SharedPageProps } from '../backend/enhancers';
 import { queryInitialApolloState } from '../core/graphql-client';
 
-import { HomePage } from '../components/pages/HomePage';
+import { HomePage } from '../components/screens/HomePage';
 
 export interface HomePageOwnProps {}
 
