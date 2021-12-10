@@ -5,7 +5,7 @@ import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { MainLayout } from '../components/layout/MainLayout';
 import { AppProps } from 'next/app';
-import { useApollo } from '../core/graphql-client';
+import { useApollo } from '../apollo';
 import React from 'react';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {

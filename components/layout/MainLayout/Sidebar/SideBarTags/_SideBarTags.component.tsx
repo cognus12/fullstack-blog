@@ -2,7 +2,7 @@ import React from 'react';
 import { HashTags } from '../../../../common/HashTags';
 import { formatHashTagToHref, formatHashTagToView } from '../../../../../common/helpers';
 import { HashTagDTO, HashTagUI } from '../../../../../common/contracts/HashTagDTO';
-import { useQueryAllTags } from '../../../../../core/graphql-client';
+import { useQueryAllTags } from '../../../../../apollo';
 
 const normalizeHashTags = (tags: HashTagDTO[]): HashTagUI[] =>
   tags.map(({ tag, count }) => ({

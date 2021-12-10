@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_POST_LIST } from '../queries/post-list';
+import { QUERY_POST_LIST } from '../gql/queries/post-list';
 
 export interface UseQueryPostListVars {
   tag?: string | string[] | undefined;

@@ -1,9 +1,9 @@
-import { FullPostDTO, PostsDataDTO } from '../common/contracts/PostDTO';
-import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from './schema/interfaces';
-import { HashTagDTO } from '../common/contracts/HashTagDTO';
-import { IPostService } from './post/post.service';
+import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
+import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from '../schema/interfaces';
+import { HashTagDTO } from '../../common/contracts/HashTagDTO';
+import { IPostService } from '../post/post.service';
 
-export interface IDataLoader {
+export interface IDataService {
   postList: (args: PostsListArgs) => Promise<PostsDataDTO>;
   post: (args: GetOnePostArgs) => Promise<FullPostDTO | null>;
   allTags: () => Promise<HashTagDTO[]>;
@@ -14,7 +14,7 @@ export interface DataLoaderOptions {
   postService: IPostService;
 }
 
-export class DataLoader implements IDataLoader {
+export class DataService implements IDataService {
   private postService: IPostService;
 
   constructor({ postService }: DataLoaderOptions) {

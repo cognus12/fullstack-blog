@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
-import { queryInitialApolloState } from '../../core/graphql-client';
-import { QUERY_POST_PAGE_DATA } from '../../core/graphql-client';
+import { queryInitialApolloState } from '../../apollo';
+import { QUERY_POST_PAGE_DATA } from '../../apollo';
 
 import { FullPostDTO } from '../../common/contracts/PostDTO';
 

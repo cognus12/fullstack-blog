@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQueryFullPost } from '../../../../core/graphql-client';
+import { useQueryFullPost } from '../../../../apollo';
 import { PostArticle } from './PostArticle';
 import { useSlug } from '../../../../hooks';
 

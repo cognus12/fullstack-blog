@@ -3,14 +3,14 @@ import { getConfig } from '../common/config/config.service';
 import { schema } from './schema/schema';
 import { MicroRequest } from 'apollo-server-micro/dist/types';
 import { ServerResponse } from 'http';
-import { IDataLoader } from './data.loader';
+import { IDataService } from './data/data.service';
 
 export type Handler = (req: MicroRequest, res: ServerResponse) => Promise<void>;
 
 export class App {
-  private readonly dataLoader: IDataLoader;
+  private readonly dataLoader: IDataService;
 
-  constructor(dataLoader: IDataLoader) {
+  constructor(dataLoader: IDataService) {
     this.dataLoader = dataLoader;
   }
 
