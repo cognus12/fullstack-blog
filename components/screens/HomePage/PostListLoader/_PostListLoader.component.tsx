@@ -4,7 +4,7 @@ import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
 import { useSlug } from '../../../../hooks';
-import { useQueryPostList } from '../../../../core/graphql-client';
+import { useQueryPostList } from '../../../../apollo';
 
 export const PostListLoader: React.FC = () => {
   const tag = useSlug();

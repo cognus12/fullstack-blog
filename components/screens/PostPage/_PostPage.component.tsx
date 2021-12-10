@@ -2,7 +2,7 @@ import React from 'react';
 import { PostLoader } from './PostLoader';
 import { PageInner } from '../../layout/PageInner';
 import { useSlug } from '../../../hooks';
-import { useQueryPostPartials } from '../../../core/graphql-client';
+import { useQueryPostPartials } from '../../../apollo';
 
 export const PostPage: React.FC = () => {
   const slug = useSlug();

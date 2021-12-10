@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { DocumentNode } from 'graphql';
-import { FullPostDTO } from '../../../../common/contracts/PostDTO';
+import { FullPostDTO } from '../../common/contracts/PostDTO';
 
 type Field = keyof FullPostDTO;
 

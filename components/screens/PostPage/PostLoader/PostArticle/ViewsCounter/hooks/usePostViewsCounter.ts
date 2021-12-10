@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSlug } from '../../../../../../../hooks';
-import { useMutationIncPostViews } from '../../../../../../../core/graphql-client/gql/hooks/useMutationIncPostViews';
-import { useQueryPostPartials } from '../../../../../../../core/graphql-client';
+import { useMutationIncPostViews } from '../../../../../../../apollo/hooks/useMutationIncPostViews';
+import { useQueryPostPartials } from '../../../../../../../apollo';
 
 export const usePostViewsCounter = (): void => {
   const slug = useSlug();

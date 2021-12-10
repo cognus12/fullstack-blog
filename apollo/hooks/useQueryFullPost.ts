@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_FULL_POST } from '../queries/full-post';
+import { QUERY_FULL_POST } from '../gql/queries/full-post';
 
 export interface UseQueryFullPostVars {
   slug: string | string[] | undefined;

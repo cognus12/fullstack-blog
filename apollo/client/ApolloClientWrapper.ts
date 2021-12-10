@@ -1,8 +1,8 @@
 import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client';
 import { cache } from './cache';
 
-import { isServer } from '../../../common/helpers';
-import { getConfig } from '../../../common/config/config.service';
+import { isServer } from '../../common/helpers';
+import { getConfig } from '../../common/config/config.service';
 
 export abstract class ApolloClientWrapper {
   private static _apolloClient: ApolloClient<NormalizedCacheObject>;
