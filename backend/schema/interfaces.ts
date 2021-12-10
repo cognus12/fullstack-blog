@@ -1,5 +1,5 @@
 import { FullPostDTO } from '../../common/contracts/PostDTO';
-import { IDataLoader } from '../data.loader';
+import { IDataService } from '../data/data.service';
 
 export interface PostsListArgs {
   lastId: FullPostDTO['id'];
@@ -16,5 +16,5 @@ export interface IncrementViewsArgs {
 }
 
 export interface GraphQLSeverContext {
-  dataLoader: IDataLoader;
+  dataLoader: IDataService;
 }

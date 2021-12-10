@@ -1,5 +1,7 @@
 import { Db, MongoClient } from 'mongodb';
 
+// TODO think about refactoring to class
+
 export type DbInstance = {
   client: MongoClient;
   db: Db;
