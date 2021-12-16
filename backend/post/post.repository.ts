@@ -1,5 +1,5 @@
 import { Filter, FindOptions, ObjectId } from 'mongodb';
-import { connectToDb, DbInstance } from '../db/mongodb.service';
+import { connectToDb, DbInstance } from '../mongodb/mongodb.service';
 import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { omit, takeLast } from '../../common/utils';
 import { getConfig } from '../../common/config/config.service';
