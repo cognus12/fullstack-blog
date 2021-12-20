@@ -3,7 +3,7 @@ import { getConfig } from '../common/config/config.service';
 import { schema } from './schema/schema';
 import { MicroRequest } from 'apollo-server-micro/dist/types';
 import { ServerResponse } from 'http';
-import { IDataService } from './data/data.service';
+import { IDataService } from './data/data.service.interface';
 
 export type Handler = (req: MicroRequest, res: ServerResponse) => Promise<void>;
 
