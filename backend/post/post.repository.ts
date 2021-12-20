@@ -41,10 +41,7 @@ export class PostRepository implements IPostRepository {
     post.id = postDocument._id.toHexString();
 
     if (!post.postDate) {
-      // TODO rework types (or find another solution for adding post date)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      post.postDate = new Date(postDocument._id.getTimestamp());
+      post.postDate = new Date(postDocument._id.getTimestamp()).toISOString();
     }
 
     if (!post.tags) {
