@@ -25,7 +25,7 @@ export class DataService implements IDataService {
 
   allTags = async (): Promise<HashTagDTO[]> => this.postService.getTags();
 
-  incPostViews = (args: IncrementViewsArgs): Promise<FullPostDTO> => {
+  incPostViews = async (args: IncrementViewsArgs): Promise<FullPostDTO> => {
     const { id } = args;
 
     return this.postService.incrementPostViews(id);
