@@ -6,7 +6,7 @@ export const typeDefs = gql`
   type Post {
     id: String!
     title: String!
-    postDate: Date!
+    postDate: String!
     views: Int!
     tags: [String]
     annotation: String!
