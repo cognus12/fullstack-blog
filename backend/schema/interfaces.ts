@@ -1,5 +1,5 @@
 import { FullPostDTO } from '../../common/contracts/PostDTO';
-import { IDataService } from '../data/data.service';
+import { IDataService } from '../data/data.service.interface';
 
 export interface PostsListArgs {
   lastId: FullPostDTO['id'];

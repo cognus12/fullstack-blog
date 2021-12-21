@@ -311,7 +311,3 @@ export const mockPosts: FullPostDTO[] = [
     slug: 'eight-post',
   },
 ];
-
-// export const mockPostsMap = mockPosts.reduce((acc, post, idx) => {
-//
-// }, {})
