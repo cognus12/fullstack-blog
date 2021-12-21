@@ -3,12 +3,16 @@ import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from '../schema/int
 import { HashTagDTO } from '../../common/contracts/HashTagDTO';
 import { IPostService } from '../post/post.service';
 import { DataLoaderOptions, IDataService } from './data.service.interface';
+import { IHashTagServie } from '../hash-tag/hash-tag.service.interface';
 
 export class DataService implements IDataService {
   private postService: IPostService;
 
-  constructor({ postService }: DataLoaderOptions) {
+  private hashTagService: IHashTagServie;
+
+  constructor({ postService, hashTagService }: DataLoaderOptions) {
     this.postService = postService;
+    this.hashTagService = hashTagService;
   }
 
   postList = async (args: PostsListArgs): Promise<PostsDataDTO> => {
@@ -23,7 +27,7 @@ export class DataService implements IDataService {
     return this.postService.getOnePost(slug);
   };
 
-  allTags = async (): Promise<HashTagDTO[]> => this.postService.getTags();
+  allTags = async (): Promise<HashTagDTO[]> => this.hashTagService.getTags();
 
   incPostViews = async (args: IncrementViewsArgs): Promise<FullPostDTO> => {
     const { id } = args;
