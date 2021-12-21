@@ -1,20 +1,5 @@
-import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { IPostRepository } from './post.repository';
-
-export interface GetAllArgs {
-  lastId?: FullPostDTO['id'];
-  tag?: string;
-}
-
-export type GetPostsMethod = (loadedCount: number, args?: GetAllArgs) => Promise<PostsDataDTO>;
-export type GetOnePostMethod = (slug: FullPostDTO['slug']) => Promise<FullPostDTO | null>;
-export type IncrementPostViewsMethod = (id: string) => Promise<FullPostDTO>;
-
-export interface IPostService {
-  getPosts: GetPostsMethod;
-  getOnePost: GetOnePostMethod;
-  incrementPostViews: IncrementPostViewsMethod;
-}
+import { GetOnePostMethod, GetPostsMethod, IncrementPostViewsMethod, IPostService } from './post.service.interface';
 
 export class PostService implements IPostService {
   private _repository: IPostRepository;

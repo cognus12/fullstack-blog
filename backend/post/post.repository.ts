@@ -1,32 +1,17 @@
-import { Filter, FindOptions, ObjectId } from 'mongodb';
+import { Filter, ObjectId } from 'mongodb';
 import { connectToDb, DbInstance } from '../mongodb/mongodb.service';
 import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { omit, takeLast } from '../../common/utils';
 import { getConfig } from '../../common/config/config.service';
-
-interface Document {
-  [key: string]: any;
-}
-
-interface FindAllQueryOptions {
-  filter: Filter<Document>;
-  options?: FindOptions;
-}
-
-export interface GetAllArgs {
-  lastId?: FullPostDTO['id'];
-  tag?: string;
-}
-
-type FindOneMethod = (slug: string) => Promise<FullPostDTO | null>;
-type FindMethod = (loadedCount: number, args: GetAllArgs) => Promise<PostsDataDTO>;
-type IncrementViewsMethod = (id: string) => Promise<FullPostDTO>;
-
-export interface IPostRepository {
-  findOne: FindOneMethod;
-  find: FindMethod;
-  incrementViews: IncrementViewsMethod;
-}
+import {
+  FindAllQueryOptions,
+  FindMethod,
+  FindOneMethod,
+  GetAllArgs,
+  IncrementViewsMethod,
+  IPostRepository,
+  Document,
+} from './post.repository.interface';
 
 export class PostRepository implements IPostRepository {
   private _connect = async (): Promise<DbInstance> => {
