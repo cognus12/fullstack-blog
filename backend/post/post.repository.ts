@@ -3,7 +3,6 @@ import { connectToDb, DbInstance } from '../mongodb/mongodb.service';
 import { FullPostDTO, PostPreviewDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { omit, takeLast } from '../../common/utils';
 import { getConfig } from '../../common/config/config.service';
-import { HashTagDTO } from '../../common/contracts/HashTagDTO';
 
 interface Document {
   [key: string]: any;
@@ -21,13 +20,11 @@ export interface GetAllArgs {
 
 type FindOneMethod = (slug: string) => Promise<FullPostDTO | null>;
 type FindMethod = (loadedCount: number, args: GetAllArgs) => Promise<PostsDataDTO>;
-type GetAllTagsMethod = () => Promise<HashTagDTO[]>;
 type IncrementViewsMethod = (id: string) => Promise<FullPostDTO>;
 
 export interface IPostRepository {
   findOne: FindOneMethod;
   find: FindMethod;
-  getAllTags: GetAllTagsMethod;
   incrementViews: IncrementViewsMethod;
 }
 
@@ -165,25 +162,6 @@ export class PostRepository implements IPostRepository {
     }
 
     return result;
-  };
-
-  // TODO extract to separate Tag module
-  public getAllTags = async (): Promise<HashTagDTO[]> => {
-    const { db } = await this._connect();
-
-    const cursor = await db.collection('tags').find({});
-
-    const count = await cursor.count();
-
-    if (count === 0) {
-      return [];
-    }
-
-    const tags = await cursor.toArray();
-
-    await cursor.close();
-
-    return tags as HashTagDTO[];
   };
 
   public incrementViews: IncrementViewsMethod = async (id) => {

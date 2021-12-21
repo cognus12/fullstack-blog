@@ -1,5 +1,4 @@
 import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
-import { HashTagDTO } from '../../common/contracts/HashTagDTO';
 import { IPostRepository } from './post.repository';
 
 export interface GetAllArgs {
@@ -9,20 +8,18 @@ export interface GetAllArgs {
 
 export type GetPostsMethod = (loadedCount: number, args?: GetAllArgs) => Promise<PostsDataDTO>;
 export type GetOnePostMethod = (slug: FullPostDTO['slug']) => Promise<FullPostDTO | null>;
-export type GetTagsMethod = () => Promise<HashTagDTO[]>;
 export type IncrementPostViewsMethod = (id: string) => Promise<FullPostDTO>;
 
 export interface IPostService {
   getPosts: GetPostsMethod;
   getOnePost: GetOnePostMethod;
-  getTags: GetTagsMethod;
   incrementPostViews: IncrementPostViewsMethod;
 }
 
 export class PostService implements IPostService {
   private _repository: IPostRepository;
 
-  constructor(repository: any) {
+  constructor(repository: IPostRepository) {
     this._repository = repository;
   }
 
@@ -32,10 +29,6 @@ export class PostService implements IPostService {
 
   public getOnePost: GetOnePostMethod = async (slug) => {
     return await this._repository.findOne(slug);
-  };
-
-  public getTags: GetTagsMethod = async () => {
-    return await this._repository.getAllTags();
   };
 
   public incrementPostViews: IncrementPostViewsMethod = async (id) => {
