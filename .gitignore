@@ -34,3 +34,6 @@ yarn-error.log*
 .vercel
 
 .idea
+
+# temp folder for db scripts
+scripts
