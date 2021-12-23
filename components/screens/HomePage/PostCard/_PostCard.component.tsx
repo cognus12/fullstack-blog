@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { PostCardContent, PostCardTitle, PostRoot, PostHashTags, ReadMoreLink, PostCardInfo } from './_PostCard.styles';
-import { PostViews } from '../../../common/PostViews/_PostViews.component';
+import { PostViews } from '../../../common/PostViews/PostViews';
 import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
 import { DateView } from '../../../common/DateView';
 
