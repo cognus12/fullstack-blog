@@ -1,1 +1,1 @@
-export * from './_PostArticle.component';
+export * from './PostArticle';

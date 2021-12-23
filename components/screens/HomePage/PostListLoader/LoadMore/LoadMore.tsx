@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadMoreButton } from './_LoadMore.style';
+import { LoadMoreButton } from './LoadMore.style';
 import { Spinner } from './Spinner';
 import { baseColors } from '../../../../../styles/theme';
 

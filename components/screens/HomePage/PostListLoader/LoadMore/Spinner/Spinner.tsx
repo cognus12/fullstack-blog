@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpinnerInner, SpinnerRoot } from './_Spinner.styles';
+import { SpinnerInner, SpinnerRoot } from './Spinner.styles';
 
 export interface SpinnerProps {
   className?: string;

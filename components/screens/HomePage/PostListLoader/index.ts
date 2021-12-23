@@ -1,1 +1,1 @@
-export * from './_PostListLoader.component';
+export * from './PostListLoader';

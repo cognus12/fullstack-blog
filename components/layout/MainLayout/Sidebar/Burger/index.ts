@@ -1,1 +1,1 @@
-export * from './_Burger.component';
+export * from './Burger';

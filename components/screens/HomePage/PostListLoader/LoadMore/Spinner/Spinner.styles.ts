@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { SpinnerProps } from './_Spinner.component';
+import { SpinnerProps } from './Spinner';
 
 interface SpinnerInnerProps extends Pick<SpinnerProps, 'color'> {
   strokeColor: string;

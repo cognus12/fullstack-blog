@@ -1,6 +1,6 @@
 import React from 'react';
-import { convertDateToView } from './_DateView.utils';
-import { DateWrapper } from './_DateView.styles';
+import { convertDateToView } from './DateView.utils';
+import { DateWrapper } from './DateView.styles';
 
 export interface DateViewProps {
   date: string;
