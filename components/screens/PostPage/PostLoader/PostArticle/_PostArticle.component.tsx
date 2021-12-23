@@ -5,7 +5,7 @@ import { FullPostDTO } from '../../../../../common/contracts/PostDTO';
 import { DateView } from '../../../../common/DateView';
 import { ViewsCounter } from './ViewsCounter';
 
-export interface PostArticleProps extends FullPostDTO {}
+export interface PostArticleProps extends Pick<FullPostDTO, 'title' | 'content' | 'postDate' | 'views'> {}
 
 export const PostArticle: React.FC<PostArticleProps> = ({ title, content, postDate, views }) => {
   return (
