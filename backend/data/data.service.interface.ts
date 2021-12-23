@@ -1,8 +1,8 @@
 import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from '../schema/interfaces';
 import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { HashTagDTO } from '../../common/contracts/HashTagDTO';
-import { IPostService } from '../post/post.service';
 import { IHashTagServie } from '../hash-tag/hash-tag.service.interface';
+import { IPostService } from '../post/post.service.interface';
 
 export interface DataLoaderOptions {
   postService: IPostService;

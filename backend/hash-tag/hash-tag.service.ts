@@ -1,5 +1,4 @@
-import { IHashTagServie } from './hash-tag.service.interface';
-import { GetTagsMethod } from '../post/post.service';
+import { GetTagsMethod, IHashTagServie } from './hash-tag.service.interface';
 
 import { IHashTagRepository } from './hash-tag.repository.interface';
 
