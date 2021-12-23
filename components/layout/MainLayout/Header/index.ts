@@ -1,1 +1,1 @@
-export * from './_Header.component';
+export * from './Header';

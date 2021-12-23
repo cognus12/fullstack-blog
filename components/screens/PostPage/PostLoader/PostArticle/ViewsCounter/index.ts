@@ -1,1 +1,1 @@
-export * from './_ViewsCounter.component';
+export * from './ViewsCounter';

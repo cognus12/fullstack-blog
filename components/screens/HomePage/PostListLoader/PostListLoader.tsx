@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadMoreWrapper, PostListWrapper } from './_PostListLoader.styles';
+import { LoadMoreWrapper, PostListWrapper } from './PostListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';

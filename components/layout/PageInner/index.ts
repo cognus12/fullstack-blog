@@ -1,1 +1,1 @@
-export * from './_PageInner.component';
+export * from './PageInner';

@@ -1,1 +1,1 @@
-export * from './_PostPage.component';
+export * from './PostPage';

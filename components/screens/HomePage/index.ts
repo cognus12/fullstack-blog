@@ -1,1 +1,1 @@
-export * from './_HomePage.component';
+export * from './HomePage';

@@ -1,1 +1,1 @@
-export * from './_DateView.component';
+export * from './DateView';

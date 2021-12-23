@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LoadMoreProps } from './_LoadMore.component';
+import { LoadMoreProps } from './LoadMore';
 
 interface LoadMoreButtonProps extends Pick<LoadMoreProps, 'loading'> {
   isError?: boolean;

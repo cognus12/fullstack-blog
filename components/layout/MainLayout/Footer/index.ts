@@ -1,1 +1,1 @@
-export * from './_Footer.component';
+export * from './Footer';
