@@ -1,5 +1,5 @@
-import { IPostRepository } from './post.repository';
 import { GetOnePostMethod, GetPostsMethod, IncrementPostViewsMethod, IPostService } from './post.service.interface';
+import { IPostRepository } from './post.repository.interface';
 
 export class PostService implements IPostService {
   private _repository: IPostRepository;

@@ -1,9 +1,10 @@
 import { FullPostDTO, PostsDataDTO } from '../../common/contracts/PostDTO';
 import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from '../schema/interfaces';
 import { HashTagDTO } from '../../common/contracts/HashTagDTO';
-import { IPostService } from '../post/post.service';
+
 import { DataLoaderOptions, IDataService } from './data.service.interface';
 import { IHashTagServie } from '../hash-tag/hash-tag.service.interface';
+import { IPostService } from '../post/post.service.interface';
 
 export class DataService implements IDataService {
   private postService: IPostService;
