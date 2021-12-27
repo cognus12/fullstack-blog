@@ -1,20 +1,19 @@
 import React from 'react';
-import { Container } from '../../../../styles/containers';
-import { BlogAuthorInfo, BlogAuthorName, BlogAuthorWrapper, FooterInner, FooterWrapper } from './Footer.styles';
+import { Container } from '../../Container';
 
 export interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = () => {
   return (
-    <FooterWrapper>
+    <footer className="bg-zinc-900 py-[40px]">
       <Container>
-        <FooterInner>
-          <BlogAuthorWrapper>
-            <BlogAuthorName>Blog Author</BlogAuthorName>
-            <BlogAuthorInfo>Fullstack Developer (TypeScript, React, Node.js, Go)</BlogAuthorInfo>
-          </BlogAuthorWrapper>
-        </FooterInner>
+        <div className="flex justify-between">
+          <div className="flex flex-col gap-y-[10px]">
+            <span className="text-[18px]">Blog Author</span>
+            <span className="text-[14px]">Fullstack Developer (TypeScript, React, Node.js, Go)</span>
+          </div>
+        </div>
       </Container>
-    </FooterWrapper>
+    </footer>
   );
 };

@@ -1,1 +1,1 @@
-export * from './PostViews.style';
+export * from './PostViews';
