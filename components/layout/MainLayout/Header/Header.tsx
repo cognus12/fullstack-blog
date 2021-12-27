@@ -1,19 +1,18 @@
 import React from 'react';
-import { HeaderInner, HeaderWrapper } from './Header.styles';
 import { Logo } from './Logo';
-import { Container } from '../../../../styles/containers';
+import { Container } from '../../Container';
 
 export interface HeaderProps {}
 
 const HeaderView: React.FC<HeaderProps> = () => {
   return (
-    <HeaderWrapper>
+    <header className="bg-zinc-900">
       <Container>
-        <HeaderInner>
+        <div className="flex py-[20px]">
           <Logo />
-        </HeaderInner>
+        </div>
       </Container>
-    </HeaderWrapper>
+    </header>
   );
 };
 

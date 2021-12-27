@@ -1,5 +1,4 @@
 import React from 'react';
-import { LoadMoreWrapper, PostListWrapper } from './PostListLoader.styles';
 import { PostCard } from '../PostCard';
 import { LoadMore } from './LoadMore';
 import { PostPreviewDTO } from '../../../../common/contracts/PostDTO';
@@ -18,19 +17,19 @@ export const PostListLoader: React.FC = () => {
 
   return (
     <>
-      <PostListWrapper>
+      <div className="flex flex-col gap-y-[20px]">
         {posts.map((post: PostPreviewDTO) => (
           <PostCard key={post.id} {...post} />
         ))}
-      </PostListWrapper>
+      </div>
       {hasMore && (
-        <LoadMoreWrapper>
+        <div className="mt-[40px]">
           <LoadMore
             fetcher={() => fetchMore({ variables: { lastId, loadedCount, tag } })}
             loading={loading}
             error={error}
           />
-        </LoadMoreWrapper>
+        </div>
       )}
     </>
   );

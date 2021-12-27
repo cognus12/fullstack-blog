@@ -1,23 +1,22 @@
 import React from 'react';
-import { MainContent, ContentWrapper, PageInner, PageWrapper } from './MainLayout.styles';
-
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Sidebar } from './Sidebar';
+import { Container } from '../Container';
 
 export interface MainLayoutProps {}
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <PageWrapper>
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
       <Header />
-      <ContentWrapper>
-        <PageInner>
-          <MainContent>{children}</MainContent>
+      <Container className="min-h-full">
+        <div className="flex flex-nowrap relative laptop:gap-x-[20px]">
+          <main className="w-full laptop:max-w-[1000px]">{children}</main>
           <Sidebar />
-        </PageInner>
-      </ContentWrapper>
+        </div>
+      </Container>
       <Footer />
-    </PageWrapper>
+    </div>
   );
 };

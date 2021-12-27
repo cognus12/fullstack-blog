@@ -1,5 +1,4 @@
 import React from 'react';
-import { LoadMoreButton } from './LoadMore.style';
 import { Spinner } from './Spinner';
 import { baseColors } from '../../../../../styles/theme';
 
@@ -9,14 +8,13 @@ export interface LoadMoreProps {
   error?: string;
 }
 
-export const LoadMore: React.FC<LoadMoreProps> = ({ fetcher, loading, error }) => {
-  const isError = Boolean(error);
-
-  const Loader = () => <Spinner color={baseColors.green100} />;
+export const LoadMore: React.FC<LoadMoreProps> = ({ fetcher, loading }) => {
+  //TODO handle error
+  // const isError = Boolean(error);
 
   return (
-    <LoadMoreButton onClick={fetcher} isError={isError}>
-      {loading ? <Loader /> : 'Load more'}
-    </LoadMoreButton>
+    <button className="w-full p-[10px] rounded-[6px] h-[42px]" onClick={fetcher}>
+      {loading ? <Spinner color={baseColors.green100} /> : 'Load more'}
+    </button>
   );
 };

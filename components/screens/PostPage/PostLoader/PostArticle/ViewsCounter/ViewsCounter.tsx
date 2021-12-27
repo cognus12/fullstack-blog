@@ -1,6 +1,6 @@
 import React from 'react';
 import { FullPostDTO } from '../../../../../../common/contracts/PostDTO';
-import { PostViews } from '../../../../../common/PostViews/PostViews';
+import { PostViews } from '../../../../../common/PostViews';
 import { usePostViewsCounter } from './hooks/usePostViewsCounter';
 
 export interface ViewsCounterProps extends Pick<FullPostDTO, 'views'> {}

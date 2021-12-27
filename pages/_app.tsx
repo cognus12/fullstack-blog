@@ -1,3 +1,4 @@
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
@@ -6,7 +7,8 @@ import { theme } from '../styles/theme';
 import { MainLayout } from '../components/layout/MainLayout';
 import { AppProps } from 'next/app';
 import { useApollo } from '../apollo';
-import React from 'react';
+
+import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const apolloClient = useApollo(pageProps.initialApolloState);
