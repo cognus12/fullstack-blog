@@ -6,7 +6,7 @@ export interface HeaderProps {}
 
 const HeaderView: React.FC<HeaderProps> = () => {
   return (
-    <header className="bg-zinc-900">
+    <header className="bg-gray-800">
       <Container>
         <div className="flex py-[20px]">
           <Logo />

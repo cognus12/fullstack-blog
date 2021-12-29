@@ -5,7 +5,7 @@ export interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="bg-zinc-900 py-[40px]">
+    <footer className="bg-gray-800 py-[40px]">
       <Container>
         <div className="flex justify-between">
           <div className="flex flex-col gap-y-[10px]">

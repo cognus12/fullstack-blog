@@ -12,7 +12,7 @@ export const LoadMore: React.FC<LoadMoreProps> = ({ fetcher, loading }) => {
   // const isError = Boolean(error);
 
   return (
-    <button className="w-full p-[10px] rounded-[6px] h-[42px]" onClick={fetcher}>
+    <button className="bg-slate-500 w-full p-[10px] rounded-[6px] h-[42px]" onClick={fetcher}>
       {loading ? <Spinner color="#09d3ac" /> : 'Load more'}
     </button>
   );
