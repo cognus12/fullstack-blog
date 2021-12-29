@@ -18,7 +18,7 @@ const SidebarView: React.FC<SidebarProps> = () => {
   return (
     <div ref={rootElementRef}>
       <aside
-        className="rounded-[15px] bg-zinc-900 p-[20px] fixed w-full h-full top-0 right-[100%] transition-transform delay-300 tablet:w-[50%] laptop:w-[300px] laptop:h-[600px] laptop:sticky laptop:mt-[40px] laptop:top-[40px] laptop:right-auto laptop:self-start laptop:shrink-0 laptop:p-[10px] laptop:transform-none laptop:transition-none"
+        className="rounded-[15px] bg-gray-800 p-[20px] fixed w-full h-full top-0 right-[100%] transition-transform delay-300 tablet:w-[50%] laptop:w-[300px] laptop:h-[600px] laptop:sticky laptop:mt-[40px] laptop:top-[40px] laptop:right-auto laptop:self-start laptop:shrink-0 laptop:p-[10px] laptop:transform-none laptop:transition-none"
         style={{ transform: asideTransform }}
       >
         <SideBarTags />

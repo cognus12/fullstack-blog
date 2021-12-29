@@ -9,7 +9,7 @@ export interface PostArticleProps extends Pick<FullPostDTO, 'title' | 'content' 
 
 export const PostArticle: React.FC<PostArticleProps> = ({ title, content, postDate, views }) => {
   return (
-    <article className="bg-zinc-900 p-[20px] rounded-[15px] max-w-[1000px]">
+    <article className="bg-gray-800 p-[20px] rounded-[15px] max-w-[1000px]">
       <h1>{title}</h1>
       <div className="flex gap-x-[20px] w-[250px] mt-[10px]">
         <DateView date={postDate} />

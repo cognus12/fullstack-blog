@@ -9,7 +9,7 @@ export interface PostCardProps extends PostPreviewDTO {}
 
 const PostCardInner: React.FC<PostCardProps> = ({ title, annotation, tags, slug, postDate, views = 0 }) => {
   return (
-    <article className="bg-zinc-900 rounded-[15px]">
+    <article className="bg-gray-800 rounded-[15px]">
       <div className="p-[20px]">
         <h2>{title}</h2>
         <div className="flex gap-x-[20px] items-center">
