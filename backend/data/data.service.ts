@@ -3,13 +3,13 @@ import { GetOnePostArgs, IncrementViewsArgs, PostsListArgs } from '../schema/int
 import { HashTagDTO } from '../../common/contracts/HashTagDTO';
 
 import { DataLoaderOptions, IDataService } from './data.service.interface';
-import { IHashTagServie } from '../hash-tag/hash-tag.service.interface';
+import { IHashTagService } from '../hash-tag/hash-tag.service.interface';
 import { IPostService } from '../post/post.service.interface';
 
 export class DataService implements IDataService {
   private postService: IPostService;
 
-  private hashTagService: IHashTagServie;
+  private hashTagService: IHashTagService;
 
   constructor({ postService, hashTagService }: DataLoaderOptions) {
     this.postService = postService;

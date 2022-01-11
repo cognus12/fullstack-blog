@@ -1,8 +1,8 @@
-import { GetTagsMethod, IHashTagServie } from './hash-tag.service.interface';
+import { GetTagsMethod, IHashTagService } from './hash-tag.service.interface';
 
 import { IHashTagRepository } from './hash-tag.repository.interface';
 
-export class HashTagService implements IHashTagServie {
+export class HashTagService implements IHashTagService {
   private _repository: IHashTagRepository;
 
   constructor(repository: IHashTagRepository) {
@@ -10,6 +10,6 @@ export class HashTagService implements IHashTagServie {
   }
 
   public getTags: GetTagsMethod = async () => {
-    return await this._repository.getAllTags();
+    return await this._repository.getAll();
   };
 }

@@ -7,16 +7,10 @@ export class HashTagRepository implements IHashTagRepository {
     return await connectToDb();
   };
 
-  public getAllTags = async (): Promise<HashTagDTO[]> => {
+  public getAll = async (): Promise<HashTagDTO[]> => {
     const { db } = await this._connect();
 
     const cursor = await db.collection('tags').find({});
-
-    const count = await cursor.count();
-
-    if (count === 0) {
-      return [];
-    }
 
     const tags = await cursor.toArray();
 
